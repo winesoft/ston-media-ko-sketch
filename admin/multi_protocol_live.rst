@@ -271,6 +271,17 @@ ABR 스트리밍은 사전에 패턴을 등록하여 동작한다. ::
 
    /myLiveStream_abr         -> /myLiveStream_720 + /myLiveStream_480 + /myLiveStream_360
 
+HLS로 제공되었을 경우 M3U8은 아래와 같다. ::
+
+   #EXTM3U
+   #EXT-X-STREAM-INF:BANDWIDTH=1100000,RESOLUTION=1280x720,CODECS="avc1.66. 30,mp4a.40.5" 
+   /myLiveStream_720/playlist.m3u8
+   #EXT-X-STREAM-INF:BANDWIDTH=750000,RESOLUTION=858x480,CODECS="avc1.66. 30,mp4a.40.5" 
+   /myLiveStream_480/playlist.m3u8
+   #EXT-X-STREAM-INF:BANDWIDTH=1100000,RESOLUTION=480x360,CODECS="avc1.66 .30,mp4a.40.5" 
+   /myLiveStream_360/playlist.m3u8
+
+
 그림으로 표현하면 아래와 같다.
 
 .. figure:: img/sms_live_rtmp_push_abr2.png
