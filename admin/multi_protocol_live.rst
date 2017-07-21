@@ -1,6 +1,6 @@
 ﻿.. _multi-protocol-live:
 
-[v1.x] 5장. LIVE
+LIVE
 ******************
 
 이 장에서는 STON 미디어 서버의 LIVE 서비스 구성에 대해 설명한다.
