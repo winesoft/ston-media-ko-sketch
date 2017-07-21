@@ -140,9 +140,10 @@ Deny 응답
 
    <DenialCode>401</DenialCode>
 
--  ``<DenialCode> (기본: 401)`` HTTP 요청이 차단될 때 보낼 응답코드를 설정한다.
+-  ``<DenialCode> (기본: 401 Unauthorized)`` HTTP 요청이 차단될 때 보낼 응답코드를 설정한다.
+   HTTP 응답코드는 `RFC2616 <https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_ 을 참고한다. 
 
-RTMP 프로토콜에서는 NetStream이 스트림을 요청하는 단계가 Connect, Play로 나뉘어 있어 각 단계마다 보낼 수 있는 메시지가 다르다. ::
+RTMP 프로토콜에서는 NetStream을 통해 재생하는 단계가 Connect, Play로 나뉘어 있어 각 단계마다 보낼 수 있는 메시지가 다르다. ::
 
    # server.xml - <Server><VHostDefault><Options><Rtmp>
    # vhosts.xml - <Vhosts><Vhost><Options><Rtmp>
@@ -153,7 +154,7 @@ RTMP 프로토콜에서는 NetStream이 스트림을 요청하는 단계가 Conn
 -  ``<DenialCodeConnect> (기본: Rejected)`` NetStream.Connect 요청이 차단될 때 보낼 응답코드를 설정한다.
 -  ``<DenialCodePlay> (기본: Failed)`` NetStream.Play 요청이 차단될 때 보낼 응답코드를 설정한다.
 
-`events.NetStatusEvent <http://help.adobe.com/ko_KR/FlashPlatform/reference/actionscript/3/flash/events/NetStatusEvent.html>`_ 에서 공식적으로 언급하는 응답 메시지는 다음과 같다.
+`NetStatusEvent <http://help.adobe.com/ko_KR/FlashPlatform/reference/actionscript/3/flash/events/NetStatusEvent.html>`_ 에서 공식적으로 언급하는 응답 메시지는 다음과 같다.
 
 =========================== ========= ============================================
 NetStream 코드               Level     의미
@@ -232,9 +233,16 @@ $는 "조건에 맞다면 ~ 한다"를 의미하지만 !는 "조건에 맞지 �
    # /secure/ 경로 하위가 아니라면 allow한다.
    !URL[/secure/*], allow
 
-Redirect 할 때 클라이언트가 요청한 URI가 필요할 수 있다.
-이런 경우 ``#URI`` 키워드를 사용한다. ::
+.. note::
 
-   # referer헤더가 존재하지 않는다면 example.com에 요청 URI를 붙여서 Redirect한다.
-   # 클라이언트 요청은 /로 시작하기 때문에 #URI 앞에 /를 붙이지 않도록 주의한다.
-   !HEADER[referer], redirect, http://example.com#URI
+   HTTP와 RTMP는 형식과 의미가 다르지만 URL이외의 정보를 Key-Value구조로 다룬다는 점에서는 동일하다. 
+   따라서 $HEADER 표현은 RTMP에서 Object의 Property을 의미한다.
+
+   .. figure:: img/sms_acl_vhost_rtmp_property.png
+      :align: center
+   
+   위 요청은 아래 조건에 의해 차단시킬 수 있다. ::
+
+      $HEADER[flashVer: LNX 9,0,124,2], deny
+      $HEADER[fpad: false], deny
+      $HEADER[videoCodecs: 4071], deny
