@@ -143,6 +143,11 @@ Deny 응답
 -  ``<DenialCode> (기본: 401 Unauthorized)`` HTTP 요청이 차단될 때 보낼 응답코드를 설정한다.
    HTTP 응답코드는 `RFC2616 <https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_ 을 참고한다. 
 
+
+.. note::
+
+   HTTP 기반 프로토콜(HLS, MPEG-DASH)은 모두 ``<HTTP><DenialCode>`` 를 사용한다.
+
 RTMP 프로토콜에서는 NetStream을 통해 재생하는 단계가 Connect, Play로 나뉘어 있어 각 단계마다 보낼 수 있는 메시지가 다르다. ::
 
    # server.xml - <Server><VHostDefault><Options><Rtmp>
@@ -154,7 +159,7 @@ RTMP 프로토콜에서는 NetStream을 통해 재생하는 단계가 Connect, P
 -  ``<DenialCodeConnect> (기본: Rejected)`` NetStream.Connect 요청이 차단될 때 보낼 응답코드를 설정한다.
 -  ``<DenialCodePlay> (기본: Failed)`` NetStream.Play 요청이 차단될 때 보낼 응답코드를 설정한다.
 
-`NetStatusEvent <http://help.adobe.com/ko_KR/FlashPlatform/reference/actionscript/3/flash/events/NetStatusEvent.html>`_ 에서 공식적으로 언급하는 응답 메시지는 다음과 같다.
+ActinScript 3.0의 `NetStatusEvent <http://help.adobe.com/ko_KR/FlashPlatform/reference/actionscript/3/flash/events/NetStatusEvent.html>`_ 에서 공식적으로 언급하는 응답 메시지는 다음과 같다.
 
 =========================== ========= ============================================
 NetStream 코드               Level     의미
@@ -204,21 +209,21 @@ ACL은 /svc/{가상호스트 이름}/acl.txt에 설정한다. ::
    /broadcast/*adult*, deny
    /secure/*.dat
 
-조건은 IP, GeoIP, Header, URL 4가지로 설정이 가능하다.
+설정은 우선순위를 가지며 조건은 IP, GeoIP, Header, URL 4가지로 설정이 가능하다.
 
--  **IP**
+-  ``IP`` 
    $IP[...]로 표기하며 IP, IP Range, Bitmask, Subnet 네 가지 형식을 지원한다.
 
--  **GeoIP**
+-  ``GeoIP`` 
    $IP[...]로 표기하며 반드시 GeoIP설정이 되어 있어야 동작한다.
 
--  **Header**
+-  ``Header``
    $HEADER[Key : Value]로 표기한다.
    Value는 명확한 표현과 패턴을 인식한다.
    $HEADER[Key:]처럼 구분자는 있지만 Value가 빈 문자열이라면 요청 헤더의 값이 비어 있는 경우를 의미한다.
    $HEADER[Key]처럼 구분자 없이 Key만 명시되어 있다면 Key에 해당하는 헤더의 존재유무를 조건으로 판단한다.
 
--  **URL**
+-  ``URL``
    $URL[...]로 표기하며 생략이 가능합니다. 명확한 표현과 패턴을 인식합니다.
 
 $는 "조건에 맞다면 ~ 한다"를 의미하지만 !는 "조건에 맞지 않는다면 ~ 한다"를 의미한다.
@@ -236,12 +241,14 @@ $는 "조건에 맞다면 ~ 한다"를 의미하지만 !는 "조건에 맞지 �
 .. note::
 
    HTTP와 RTMP는 형식과 의미가 다르지만 URL이외의 정보를 Key-Value구조로 다룬다는 점에서는 동일하다. 
-   따라서 $HEADER 표현은 RTMP에서 Object의 Property을 의미한다.
+   따라서 $HEADER 표현은 RTMP에서 Object의 Property를 검사하는 것으로 사용된다.
 
    .. figure:: img/sms_acl_vhost_rtmp_property.png
       :align: center
+
+      RTMP의 Connect 요청 예제
    
-   위 요청은 아래 조건에 의해 차단시킬 수 있다. ::
+   위 요청은 아래 조건으로 차단시킬 수 있다. ::
 
       $HEADER[flashVer: LNX 9,0,124,2], deny
       $HEADER[fpad: false], deny
