@@ -471,7 +471,7 @@ Apple HLS
 
 원본서버에서 HTTP로 다운로드한 영상을 HLS(HTTP Live Streaming)으로 전송한다.
 
-.. figure:: img/live_workflow_hls.png
+.. figure:: img/sms_live_workflow_hls.png
    :align: center
 
 모든 인덱스/Chunk 파일은 동적으로 생성되며 별도의 저장공간을 소비하지 않는다.
