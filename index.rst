@@ -15,6 +15,7 @@ Draft
    admin/multi_protocol_vod
    admin/multi_protocol_live
    admin/access_control
+   admin/monitoring_stats
 
 
 Idea
