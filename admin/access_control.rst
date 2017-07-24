@@ -192,7 +192,7 @@ Play.UnpublishNotify        status    스트림의 배급 정지가 모든 구�
 ACL은 /svc/{가상호스트 이름}/acl.txt에 설정한다. ::
 
    # /svc/www.example.com/acl.txt
-   # 구분자는 콤마(,)이며 {조건},{키워드 = allow | deny} 순서로 표기한다.
+   # 구분자는 콤마(,)이며 {조건},{키워드 = allow | deny | redirect} 순서로 표기한다.
    # n 개의 조건을 결합(AND)하기 위해서는 &를 사용한다.
 
    $IP[192.168.1.1], allow
@@ -253,3 +253,16 @@ $는 "조건에 맞다면 ~ 한다"를 의미하지만 !는 "조건에 맞지 �
       $HEADER[flashVer: LNX 9,0,124,2], deny
       $HEADER[fpad: false], deny
       $HEADER[videoCodecs: 4071], deny
+
+
+redirect 설정은 HTTP 기반 프로토콜에 대해서만 적용 받는다. 
+Redirect 할 때 클라이언트가 요청한 URI가 필요할 수 있다. 이런 경우 #URI 키워드를 사용한다. ::
+
+   # redirect일 경우 키워드 뒤에 이동시킬 URL을 명시한다. (Location헤더의 값으로 명시)
+   $IP[GIN], redirect, /page/illegal_access.html
+   $HEADER[referer:], redirect, http://another-site.com
+
+   # referer헤더가 존재하지 않는다면 example.com에 요청 URI를 붙여서 Redirect한다.
+   # 클라이언트 요청은 /로 시작하기 때문에 #URI 앞에 /를 붙이지 않도록 주의한다.
+   !HEADER[referer], redirect, http://example.com#URI
+   
