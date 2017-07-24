@@ -255,10 +255,11 @@ $는 "조건에 맞다면 ~ 한다"를 의미하지만 !는 "조건에 맞지 �
       $HEADER[videoCodecs: 4071], deny
 
 
-redirect 설정은 HTTP 기반 프로토콜에 대해서만 적용 받는다. 
+Redirect 설정은 HTTP 기반 프로토콜에 대해서만 적용 받는다. 
 Redirect 할 때 클라이언트가 요청한 URI가 필요할 수 있다. 이런 경우 #URI 키워드를 사용한다. ::
 
-   # redirect일 경우 키워드 뒤에 이동시킬 URL을 명시한다. (Location헤더의 값으로 명시)
+   # redirect는 HTTP 에서만 동작한다.
+   # redirect일 경우 키워드 뒤에 이동시킬 URL을 명시한다. (HTTP 응답의 Location헤더의 값으로 명시)
    $IP[GIN], redirect, /page/illegal_access.html
    $HEADER[referer:], redirect, http://another-site.com
 
