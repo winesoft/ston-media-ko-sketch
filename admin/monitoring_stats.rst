@@ -29,7 +29,7 @@
        "AllClientSession":54,
        ... (생략) ...
 
-가상호스트 Type이 ``LIVE`` 인 경우 각 채널별 상세 통계가 Channel로 추가된다.
+가상호스트 Type이 ``LIVE`` 인 경우 각 채널별 상세 통계가 Channel로 추가된다. ::
 
    "VirtualHost":                              <VirtualHost                                 
    [                                               Name="www.example.com"  
@@ -60,6 +60,8 @@
 
 Channel 통계
 ------------------------------
+
+STON 미디어 서버에서 Channel은 미리 생성하는 것이 아니라 동적으로 생성/파괴된다. 
 
 가상호스트 통계와 마찬가지로 채널 통계가 프로토콜별로 구분되어 제공된다.  ::
 
