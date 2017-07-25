@@ -29,6 +29,7 @@
        "AllClientSession":54,
        ... (생략) ...
 
+
 -  ``RtmpOriginSession`` 연결된 RTMP 원본 세션 수
 -  ``RtmpOriginActiveSession`` 전송 중인 RTMP 원본 세션 수
 -  ``RtmpOriginInbound (단위: Bytes, 평균)`` RTMP를 이용해 원본으로부터 받은 양
