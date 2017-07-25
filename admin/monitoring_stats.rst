@@ -29,6 +29,11 @@
        "AllClientSession":54,
        ... (생략) ...
 
+-  ``RtmpOriginSession`` 연결된 RTMP 원본 세션 수
+-  ``RtmpOriginActiveSession`` 전송 중인 RTMP 원본 세션 수
+-  ``RtmpOriginInbound (단위: Bytes, 평균)`` RTMP를 이용해 원본으로부터 받은 양
+-  ``RtmpOriginOutbound (단위: Bytes, 평균)`` RTMP를 이용해 원본으로 전송한 양
+
 가상호스트 Type이 ``LIVE`` 인 경우 각 채널별 상세 통계가 Channel로 추가된다. ::
 
    "VirtualHost":                              <VirtualHost                                 
@@ -52,9 +57,9 @@
      ...
    ]
 
--  ``Channel`` LIVE 방송에 대한 상세통계
+-  ``Channel`` 개별 LIVE 방송에 대한 상세통계
 
-가상호스트가 LIVE 서비스로 설정되어 있는 경우 가상호스트의 종합통계와 원본/클라이언트 통계는 ``Channels`` 통계를 합한 것과 같다. 
+가상호스트가 LIVE 로 설정되어 있는 경우 가상호스트의 종합통계와 원본/클라이언트 통계는 ``Channels`` 통계를 합한 것과 같다. 
 
 
 
