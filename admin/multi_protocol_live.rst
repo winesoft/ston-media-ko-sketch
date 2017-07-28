@@ -15,7 +15,7 @@ STON 미디어 서버는 원본 LIVE 스트림으로부터 Push받거나, 게시
     # vhosts.xml
 
     <Vhosts>
-        <Vhost Name="www.example.com/ba겨" Type="LIVE">
+        <Vhost Name="www.example.com/bar" Type="LIVE">
             ...
         </Vhost>
     </Vhosts>
@@ -266,7 +266,7 @@ ABR 스트리밍은 사전에 패턴을 등록하여 동작한다. ::
    /myLiveStream_480
    /myLiveStream_360
 
-"/myLiveStream_" 은 패턴 "*_"와 일치한다. 위의 세 개의 스트림은 아래의 ABR 스트림으로 구성된다. ::
+"/myLiveStream_" 은 패턴 "*_"와 일치한다. 세 개의 스트림은 아래의 ABR 스트림으로 구성된다. ::
 
    /myLiveStream_abr         -> /myLiveStream_720 + /myLiveStream_480 + /myLiveStream_360
 
@@ -498,7 +498,7 @@ Apple HLS
 
 가상호스트가 생성되었다면 별도의 설정없이 여러 스트림을 동시에 Pull할 수 있다.
 
-.. figure:: img/sms_live_rtmp_pull_multi.png
+.. figure:: img/sms_live_hls_pull_multi.png
    :align: center
 
    Pull하면 채널이 생성된다.
