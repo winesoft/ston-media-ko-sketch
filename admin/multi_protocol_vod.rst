@@ -223,7 +223,7 @@ MPEG2-TS(Transport Stream)로 Packetizing하고 인덱스 파일을 구성하는
       /bar/mp4:trip.mp4?start=0&end=60/playlist.m3u8
 
    동작에는 문제가 없지만 QueryString을 맨 뒤에 붙이는 HTTP 규격에 어긋난다.
-   이를 보완하기 위해 다음과 같은 표현해도 동작은 동일하다. ::
+   다음과 같은 표현해도 동작은 동일하다. ::
 
       /bar/mp4:trip.mp4/playlist.m3u8?start=0&end=60
       /bar/mp4:trip.mp4?start=0/playlist.m3u8?end=60

@@ -15,7 +15,7 @@ STON 미디어 서버는 원본 LIVE 스트림으로부터 Push받거나, 게시
     # vhosts.xml
 
     <Vhosts>
-        <Vhost Name="www.example.com/bar" Type="LIVE">
+        <Vhost Name="www.example.com/ba겨" Type="LIVE">
             ...
         </Vhost>
     </Vhosts>
@@ -30,7 +30,7 @@ STON 미디어 서버는 원본 LIVE 스트림으로부터 Push받거나, 게시
 
 .. warning::
 
-   VOD와 LIVE는 동적으로 변경할 수 없다. 
+   VOD와 LIVE는 동적으로 변경될 수 없다. 
    같은 이름의 가상호스트를 사용하려면 삭제 후 다시 추가해주어야 한다.
 
 
@@ -103,8 +103,7 @@ LIVE 소스와 통신할 프로토콜을 지정해주어야 한다. ::
 .. note::
 
    누구나 채널을 생성(Push 또는 Pull)할 수 있다. 
-   이를 제한하고 싶다면 "서버접근제어" 나 "가상호스트 접근제어"를 사용한다. 
-   http://ston.readthedocs.io/ko/latest/admin/access_control.html <http://ston.readthedocs.io/ko/latest/admin/access_control.html>`_
+   이를 제한하고 싶다면 :ref:`access-control-serviceaccess` 나 :ref:`access-control-vhost` 를 사용한다. 
 
 
 
@@ -224,7 +223,7 @@ Active 소스와 연결이 종료되면 연결된 순서대로 Standby 소스가
 
    RTMP Push - Active 장애발생 처리
 
-이 때 각 소스간 서로 다른 Timestamp를 사용하여도 최초 Active 소스의 Timestamp가 승계되어 매끄러운(Seamless) 재생환경을 구성한다.
+이때 각 소스간 서로 다른 Timestamp를 사용하여도 최초 Active 소스의 Timestamp가 승계되어 매끄러운(Seamless) 재생환경을 구성한다.
 
 
 
@@ -259,15 +258,15 @@ ABR 스트리밍은 사전에 패턴을 등록하여 동작한다. ::
 
 -  ``<Stream>``
    하위의 멀티 ``<Pattern>`` 을 하나의 ABR 스트림으로 구성한다.
-   구성된 ABR 스트림은 ``Name`` 을 URL로 접근이 가능하다.
+   구성된 ABR 스트림은 ``Name`` 을 URL 로써 접근이 가능하다.
 
-위와 같은 구성하고 다음처럼 각기 다른 Bitrate의 스트림들이 Push되었다고 가정해 보자. ::
+위와 같이 구성하고 다음처럼 각기 다른 Bitrate의 스트림들이 Push되었다고 가정해 보자. ::
 
    /myLiveStream_720
    /myLiveStream_480
    /myLiveStream_360
 
-"/myLiveStream_" 은 패턴 "*_"와 일치한다. 위의 세개의 스트림은 아래의 ABR 스트림으로 구성된다. ::
+"/myLiveStream_" 은 패턴 "*_"와 일치한다. 위의 세 개의 스트림은 아래의 ABR 스트림으로 구성된다. ::
 
    /myLiveStream_abr         -> /myLiveStream_720 + /myLiveStream_480 + /myLiveStream_360
 
@@ -371,7 +370,7 @@ Active 소스와 연결이 종료되면 확보된 순서대로 Standby 소스가
 
    RTMP Pull - Active 장애발생 처리
 
-이 때 각 소스간 서로 다른 Timestamp를 사용하여도 최초 Active 소스의 Timestamp가 승계되어 매끄러운(Seamless) 재생환경을 구성한다.
+이때 각 소스간 서로 다른 Timestamp를 사용하여도 최초 Active 소스의 Timestamp가 승계되어 매끄러운(Seamless) 재생환경을 구성한다.
 
 
 
@@ -389,7 +388,7 @@ LIVE 소스로부터 수신 받은 RTMP 스트림을 가공없이 RTMP 클라이
    <BufferSize>3</BufferSize>
 
 -  ``<BufferSize> (기본: 3초)``
-   클라이언트가 PLAY를 요청했을 때 "현재시점"에서 설정된 시간(초) 이전부터 전송한다.
+   클라이언트가 PLAY를 요청했을 때 "현재시점"을 기준으로 설정된 시간(초) 이전부터 전송한다.
 
       .. figure:: img/sms_live_rtmp_buffersize.png
          :align: center
@@ -403,7 +402,7 @@ LIVE 서비스의 특성상 방송 시점과 클라이언트 시청 시점의 �
 
    BufferSize , 시점, 네트워크 안정성, 원활한 재생의 관계
 
-하지만 3G/공용Wi-Fi 등 불안정한 네트워크 환경이라면 영상이 자주 끊기는 등 재생이 원활하지 않을 가능성이 높다.
+이때 3G/공용Wi-Fi 등 불안정한 네트워크 환경이라면 영상이 자주 끊기는 등 재생이 원활하지 않을 가능성이 높다.
 클라이언트가 일정시간을 버퍼링한다면 순간적인 네트워크 지연에도 끊김없는 재생이 가능하다.
 
 
@@ -531,7 +530,7 @@ Active 소스와 연결이 종료되면 확보된 순서대로 Standby 소스가
 
    HLS Pull - Active 장애발생 처리
 
-이 때 각 소스간 서로 다른 Timestamp를 사용하여도 최초 Active 소스의 Timestamp가 승계되어 매끄러운(Seamless) 재생환경을 구성한다.
+이때 각 소스간 서로 다른 Timestamp를 사용하여도 최초 Active 소스의 Timestamp가 승계되어 매끄러운(Seamless) 재생환경을 구성한다.
 
 
 

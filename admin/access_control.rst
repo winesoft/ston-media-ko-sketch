@@ -159,7 +159,7 @@ RTMP 프로토콜에서는 NetStream을 통해 재생하는 단계가 Connect, P
 -  ``<DenialCodeConnect> (기본: Rejected)`` NetStream.Connect 요청이 차단될 때 보낼 응답코드를 설정한다.
 -  ``<DenialCodePlay> (기본: Failed)`` NetStream.Play 요청이 차단될 때 보낼 응답코드를 설정한다.
 
-ActinScript 3.0의 `NetStatusEvent <http://help.adobe.com/ko_KR/FlashPlatform/reference/actionscript/3/flash/events/NetStatusEvent.html>`_ 에서 공식적으로 언급하는 응답 메시지는 다음과 같다.
+ActinScript 3.0 - `NetStatusEvent <http://help.adobe.com/ko_KR/FlashPlatform/reference/actionscript/3/flash/events/NetStatusEvent.html>`_ 에서 공식적으로 언급하는 응답 메시지는 다음과 같다.
 
 =========================== ========= ============================================
 NetStream 코드               Level     의미
@@ -239,7 +239,7 @@ ACL은 /svc/{가상호스트 이름}/acl.txt에 설정한다. ::
    $HEADER[Key]처럼 구분자 없이 Key만 명시되어 있다면 Key에 해당하는 헤더의 존재유무를 조건으로 판단한다.
 
 -  ``URL``
-   $URL[...]로 표기하며 생략이 가능합니다. 명확한 표현과 패턴을 인식합니다.
+   $URL[...]로 표기하며 생략이 가능하다. 명확한 표현과 패턴을 인식한다.
 
 $는 "조건에 맞다면 ~ 한다"를 의미하지만 !는 "조건에 맞지 않는다면 ~ 한다"를 의미한다.
 다음과 같이 부정조건으로 지원한다. ::
