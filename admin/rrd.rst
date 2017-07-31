@@ -1,27 +1,33 @@
 ﻿.. _rrd:
 
-RRD
+장기통계
 ******************
+
+5분 이전의 통계는 "평균 Gauge" 로 RRD와 Graph API를 통해 제공된다.
+
+================= ================ ================== =============== ========== =========  ========= ===========
+Graph 이름         시간단위           보관날짜(일)          # of lines      Interval   RRA-                                         
+================= ================ ================== =============== ========== =========  ========= ===========
+*_day.png         5 min            90                 25920           0          LAST
+*_week.png        30 min           120                5760            6          AVERAGE    MINIMUM   MAXIMUM
+*_month.png       1 hour           180                4320            12         AVERAGE    MINIMUM   MAXIMUM
+*_year.png        6 hour           365                1460            72         AVERAGE    MINIMUM   MAXIMUM
+*_year2.png       1 day            730                730             288        AVERAGE    MINIMUM   MAXIMUM
+================= ================ ================== =============== ========== =========  ========= ===========
 
 
 .. toctree::
    :maxdepth: 2
 
 
-.. note::
+RRD
+====================================
 
-   아래 기준으로 생성하고 RRD 파일 크기가 너무 클 경우 라인 수를 적절히 줄일 필요가 있음
+가상호스트/채널마다 RRD를 생성하고 가상호스트가 삭제되면 파기한다.
 
-========= ================ ================== =============== ========== =========  =========
-시간단위    보관날짜(일)        # of lines         Interval        RRA-                                         
-========= ================ ================== =============== ========== =========  =========
-5 min     90               25920              0               LAST
-30 min    120              5760               6               AVERAGE    MINIMUM    MAXIMUM
-1 hour    180              4320               12              AVERAGE    MINIMUM    MAXIMUM
-6 hour    365              1460               72              AVERAGE    MINIMUM    MAXIMUM
-1 day     730              730                288             AVERAGE    MINIMUM    MAXIMUM
-========= ================ ================== =============== ========== =========  =========
+.. note:: 
 
+   개발단계에서 RRD 파일 크기가 너무 커지는 경우를 감안하여 최대 라인수는 협의가 필요함
 
 ::
 
@@ -82,4 +88,77 @@ RRA 파트 데이터의 구조 지정하는 부분
 - 데이터 확인 방법은 rrdtool fetch x.rrd AVERAGE —start 시간 —end 시간
 
 - RRD가 시간이 딱 끊어져서 들어가는 제약이 있는 database이므로 시작 시간과 끝 시간도 300 단위에 맞게 끊어주는것이 좋음.
+
+
+
+
+Graph
+====================================
+
+STON Edge 서버와 다른 점에 대해서만 명시한다.
+
+-  dash 그래프 제거
+-  *_year2.png 그래프 추가
+-  채널 그래프 제공
+-  조회 기간 추가
+
+
+
+채널 그래프
+---------------------
+
+채널은 가상호스트가 제공하는 API를 대부분 동일하게 제공한다. 
+
+.. note::
+
+   제공하지 않는 API 목록 ::
+
+      /graph/vhost/filecount_*.png
+      /graph/vhost/mem_*.png
+      /graph/vhost/wf2d_*.png
+
+
+
+예를 들어 가상호스트 ``www.example.com/bar`` 에 대한 (5분 단위) 클라이언트 트래픽 조회 API 아래와 같다. ::
+
+    /graph/vhost/client_traffic_day.png?vhost=www.example.com/bar
+
+
+해당 가상호스트에 ``/myLiveStream`` 라는 채널이 있다면 다음과 같이 호출한다. ::
+
+    /graph/vhost/client_traffic_day.png?vhost=www.example.com/bar/myLiveStream
+
+채널이 존재하지 않는 경우 404 Not Found로 응답한다.
+
+
+
+
+조회 범위
+---------------------
+
+절대시간을 파라미터로 입력하여 그래프를 생성한다. ::
+
+   /graph/vhost/client_traffic_day.png?vhost={가상호스트명}&start={yyyyMMddHHmm}&end={yyyyMMddHHmm}
+
+분(mm) 조건은 5분 단위로 내림된다. 
+예를 들어 HHmm 조건을 1722 라고 입력했다면 이 수치는 5분 단위를 맞추기 위해 11720 으로 내림된다.
+
+``start`` 파라미터가 생략되면 5분 전 통계를 기준으로 아래와 같이 그래프를 제공한다.
+
+================= =================
+Graph 이름         기본 기간
+================= =================
+*_day.png         2일 (48시간)
+*_week.png        2주 (14일)
+*_month.png       7주
+*_year.png        9개월
+*_year2.png       18개월
+================= =================
+
+``end`` 파라미터가 생략되면 start를 기준으로 위 표에 명시된 기간만큼 그래프가 그려진다. 
+
+예를 들어 2017년 7월 1일의 가상호스트 ``www.example.com/bar`` 의 채널 ``/myLiveStream`` 의 주간 평균 클라이언트 트래픽을 보고 싶다면 아래와 같이 입력한다. ::
+
+  /graph/vhost/client_traffic_week.png?vhost=www.example.com/bar&start=201707010000
+
 
