@@ -16,6 +16,17 @@ Graph 이름             시간단위           보관날짜(일)          # of 
 ===================== ================ ================== =================== ============== =============  ========= ===========
 
 
+================ ================== =================== ============== =============  ========= ===========
+시간단위           보관날짜(일)          # of lines          Interval       RRA
+================ ================== =================== ============== =============  ========= ===========
+5 min            90                 25920               0              LAST
+30 min           120                5760                6              AVERAGE        MINIMUM   MAXIMUM
+1 hour           180                4320                12             AVERAGE        MINIMUM   MAXIMUM
+6 hour           365                1460                72             AVERAGE        MINIMUM   MAXIMUM
+1 day            730                730                 288            AVERAGE        MINIMUM   MAXIMUM
+================ ================== =================== ============== =============  ========= ===========
+
+
 .. toctree::
    :maxdepth: 2
 
@@ -95,13 +106,21 @@ RRA 파트 데이터의 구조 지정하는 부분
 Graph
 ====================================
 
-STON Edge 서버와 다른 점에 대해서만 명시한다.
+STON 미디어 서버 Graph API는 다음과 같은 형식을 가진다. ::
 
--  dash 그래프 제거
--  *_year2.png 그래프 추가
--  채널 그래프 제공
--  조회 기간 추가
+   /graph_rrd?key1=value1&key2=value2...
 
+전역/가상호스트에 따라 지원되는 Key/Value 범위가 달라진다.
+지원되는 Key/Value는 ``target``에 따라 다르며
+
+   /view_graph ? target= ...
+               & vhost=example.com
+               & protocol=all
+               & format=png|jpg|gif
+
+               & step= 300 (시간단위-초)
+               & start= ...
+               & end= ...
 
 
 채널 그래프
@@ -161,3 +180,9 @@ Graph 이름         기본 기간
   /graph/vhost/client_traffic_week.png?vhost=www.example.com/bar&start=201707010000
 
 
+/graph ? 
+          target=
+          vhost=
+          foramt=png
+          start= 
+          end=
