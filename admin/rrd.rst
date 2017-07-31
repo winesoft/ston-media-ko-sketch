@@ -9,10 +9,10 @@
 Graph 이름             시간단위           보관날짜(일)          # of lines          Interval       RRA
 ===================== ================ ================== =================== ============== =============  ========= ===========
 *_day.png             5 min            90                 25920               0              LAST
-*_week.png            30 min           120                5760                6              AVERAGE    MINIMUM   MAXIMUM
-*_month.png           1 hour           180                4320                12             AVERAGE    MINIMUM   MAXIMUM
-*_year.png            6 hour           365                1460                72             AVERAGE    MINIMUM   MAXIMUM
-*_year2.png           1 day            730                730                 288            AVERAGE    MINIMUM   MAXIMUM
+*_week.png            30 min           120                5760                6              AVERAGE        MINIMUM   MAXIMUM
+*_month.png           1 hour           180                4320                12             AVERAGE        MINIMUM   MAXIMUM
+*_year.png            6 hour           365                1460                72             AVERAGE        MINIMUM   MAXIMUM
+*_year2.png           1 day            730                730                 288            AVERAGE        MINIMUM   MAXIMUM
 ===================== ================ ================== =================== ============== =============  ========= ===========
 
 
