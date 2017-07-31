@@ -145,10 +145,10 @@ start+6hours or s+6h     6 hours after start time (may be used as end time speci
 
 지원되는 target은 다음과 같다.
 
-target                    Main                  Sub                    설명
+
 
 ========================= ===================== ============================== ======================================
-target                    
+target                    Main line             Sub line                       설명
 ========================= ===================== ============================== ======================================
 cpu                       Kernel + User         Kernel                         CPU 사용량
 ston_media_server_cpu     Kernel + User         Kernel                         STON 미디어 서버 CPU 사용량
