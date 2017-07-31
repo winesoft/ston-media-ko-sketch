@@ -3,18 +3,7 @@
 RRD + Graph
 ******************
 
-5분 이전의 통계는 "평균 Gauge" 로 RRD에 기록되며, Graph API를 통해 제공된다.
-
-===================== ================ ================== =================== ============== =============  ========= ===========
-Graph 이름             시간단위           보관날짜(일)          # of lines          Interval       RRA
-===================== ================ ================== =================== ============== =============  ========= ===========
-*_day.png             5 min            90                 25920               0              LAST
-*_week.png            30 min           120                5760                6              AVERAGE        MINIMUM   MAXIMUM
-*_month.png           1 hour           180                4320                12             AVERAGE        MINIMUM   MAXIMUM
-*_year.png            6 hour           365                1460                72             AVERAGE        MINIMUM   MAXIMUM
-*_year2.png           1 day            730                730                 288            AVERAGE        MINIMUM   MAXIMUM
-===================== ================ ================== =================== ============== =============  ========= ===========
-
+5분 이전의 통계는 "평균 Gauge" 로 RRD에 기록되며, Graph API를 통해 제공된다. 
 
 ================ ================== =================== ============== =============  ========= ===========
 시간단위           보관날짜(일)          # of lines          Interval       RRA
@@ -106,21 +95,75 @@ RRA 파트 데이터의 구조 지정하는 부분
 Graph
 ====================================
 
-STON 미디어 서버 Graph API는 다음과 같은 형식을 가진다. ::
+API를 통해 저장된 RRD를 Graph로 추출한다. 
+한 그래프에는 최소 1개 이상의 선이 그려지는데 주로 Main 라인은 녹색, Sub 라인은 파란색으로 그려진다. ::
 
-   /graph_rrd?key1=value1&key2=value2...
+   /graph_xxx?key1=value1&key2=value2...
 
-전역/가상호스트에 따라 지원되는 Key/Value 범위가 달라진다.
-지원되는 Key/Value는 ``target``에 따라 다르며
+공통적으로 지원되는 Key/Value는 아래와 같다.
 
-   /view_graph ? target= ...
-               & vhost=example.com
-               & protocol=all
-               & format=png|jpg|gif
+- **target** - `전역자원`_ 과 `가상호스트`_ 에서 상세기술
+- **step** - 시간단위로 ``5m`` , ``30m`` , ``1h`` , ``6h`` , ``1d`` 중 선택
+- **start** - 시작시간
+- **end** - 끝시간
 
-               & step= 300 (시간단위-초)
-               & start= ...
-               & end= ...
+시간표현은 `rrdfetch <https://oss.oetiker.ch/rrdtool/doc/rrdfetch.en.html>`_ 에서 제공하는 표현을 그대로 사용한다. 
+이 중 시간(start, end)에서 사용할 수 있는 표현은 아래와 같다.
+
+======================== ================================================================================
+표현                      설명
+======================== ================================================================================
+Oct 12                   October 12 this year
+-1month or -1m           current time of day, only a month before (may yield surprises, see NOTE3 above).
+noon yesterday -3hours   yesterday morning; can also be specified as 9am-1day.
+23:59 31.12.1999         1 minute to the year 2000.
+12/31/99 11:59pm         1 minute to the year 2000 for imperialists.
+12am 01/01/01            start of the new millennium
+end-3weeks or e-3w       3 weeks before end time (may be used as start time specification).
+start+6hours or s+6h     6 hours after start time (may be used as end time specification).
+931225537                18:45 July 5th, 1999 (yes, seconds since 1970 are valid as well).
+19970703 12:45           12:45 July 3th, 1997 (my favorite, and its even got an ISO number (8601)).
+======================== ================================================================================
+
+다양한 표현을 통해 서비스 모니터링에 최적화된 Graph를 지원한다.
+
+
+.. note::
+
+   Graph 포맷을 PNG 와 GIF 중 선택할 수 있으나, PNG 가 GIF 보다 20~30% 더 빠르고 40% 더 적은 크기를 가지므로 PNG 만을 지원한다.
+
+
+전역자원
+---------------------
+
+전역자원에서 지원되는 Graph 형태는 아래와 같다. ::
+
+   /graph_global?target=...
+                &step=...
+                &start=...
+                &end=...
+
+지원되는 target은 다음과 같다.
+
+========================= ===================== ====================== ======================================
+target                    Main                  Sub                    설명
+========================= ===================== ====================== ======================================
+cpu                       Kernel + User         Kernel                 CPU 사용량
+ston_media_server_cpu     Kernel + User         Kernel                 STON 미디어 서버 CPU 사용량
+memory                    전체 사용량              STON 미디어 서버 사용량    메모리 사용량
+iowait                    IO Wait               -                      IO Wait
+loadavg                   Load Average          -                      Load Average
+ssockevent                Accepted              Closed                 서버소켓 이벤트 (클라이언트 -> STON)
+ssockusage                전체                   Established            서버소켓 사용량 (클라이언트 -> STON)
+csockevent                Connected             Closed                 클라이언트소켓 이벤트 (STON -> 원본서버)
+csockusage                전체                   Established            클라이언트소켓 사용량 (STON -> 원본서버)
+acldenied                 차단된 클라이언트          -                      차단된 IP접근
+eq                        이벤트 큐                -                     이벤트 큐
+wf2w                      쓰기 대기중인 파일개수      -                      쓰기대기
+tcpsocket                 -                     -                      TCP 소켓상태
+========================= ===================== ====================== ======================================
+
+
 
 
 채널 그래프
