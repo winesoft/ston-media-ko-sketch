@@ -152,12 +152,12 @@ target
 ========================= ===================== ====================== ======================================
 cpu                       Kernel + User         Kernel                 CPU 사용량
 ston_media_server_cpu     Kernel + User         Kernel                 STON 미디어 서버 CPU 사용량
-========================= ===================== ====================== ======================================
-
-
 memory                    전체 사용량              STON 미디어 서버 사용량    메모리 사용량
 iowait                    IO Wait               -                      IO Wait
 loadavg                   Load Average          -                      Load Average
+========================= ===================== ====================== ======================================
+
+
 ssockevent                Accepted              Closed                 서버소켓 이벤트 (클라이언트 -> STON)
 ssockusage                전체                   Established            서버소켓 사용량 (클라이언트 -> STON)
 csockevent                Connected             Closed                 클라이언트소켓 이벤트 (STON -> 원본서버)
