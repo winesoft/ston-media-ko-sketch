@@ -145,6 +145,8 @@ start+6hours or s+6h     6 hours after start time (may be used as end time speci
 
 지원되는 target은 다음과 같다.
 
+
+
 ========================= ===================== ============================== ======================================
 target                    Main line             Sub line                       설명
 ========================= ===================== ============================== ======================================
@@ -160,9 +162,14 @@ csockusage                전체                   Established                  
 acldenied                 차단된 클라이언트         (없음)                           차단된 IP접근
 eq                        이벤트 큐               (없음)                           이벤트 큐
 wf2w                      쓰기 대기중              (없음)                          쓰기 대기 중인 파일개수
-tcpsocket                 .. figure:: img/graph_tcpsocket_detail.png                                                     
+tcpsocket                                                                      .. figure:: img/graph_tcpsocket_detail.png
 ========================= ===================== ============================== ======================================
 
+
+
+
+
+tcpsocket                                                                      TCP 소켓상태
 
 
 채널 그래프
