@@ -162,7 +162,7 @@ csockusage                전체                   Established                  
 acldenied                 차단된 클라이언트         (없음)                           차단된 IP접근
 eq                        이벤트 큐               (없음)                           이벤트 큐
 wf2w                      쓰기 대기중              (없음)                          쓰기 대기 중인 파일개수
-tcpsocket                                                                      .. figure:: img/sms_live_hls_to_rtmp1.png
+tcpsocket                                                                      .. figure:: img/graph_tcpsocket_detail.png
 ========================= ===================== ============================== ======================================
 
 
