@@ -153,12 +153,16 @@ target                    Main line             Sub line                       �
 cpu                       Kernel + User         Kernel                         CPU 사용량
 ston_media_server_cpu     Kernel + User         Kernel                         STON 미디어 서버 CPU 사용량
 memory                    전체 사용량              STON 미디어 서버 사용량            메모리 사용량
-iowait                    IO Wait               -                              IO Wait
-loadavg                   Load Average          -                              Load Average
+iowait                    IO Wait               (없음)                          IO Wait
+loadavg                   Load Average          (없음)                          Load Average
 ssockevent                Accepted              Closed                         서버소켓 이벤트 (클라이언트 -> STON)
 ssockusage                전체                   Established                    서버소켓 사용량 (클라이언트 -> STON)
 csockevent                Connected             Closed                         클라이언트소켓 이벤트 (STON -> 원본서버)
 csockusage                전체                   Established                    클라이언트소켓 사용량 (STON -> 원본서버)
+acldenied                 차단된 클라이언트         (없음)                           차단된 IP접근
+eq                        이벤트 큐               (없음)                           이벤트 큐
+wf2w                      쓰기 대기중인 파일개수      (없음)                          쓰기대기
+tcpsocket                                                                      TCP 소켓상태
 ========================= ===================== ============================== ======================================
 
 
