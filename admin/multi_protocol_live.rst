@@ -540,7 +540,11 @@ Active 소스와 연결이 종료되면 확보된 순서대로 Standby 소스가
 HLS to HLS 전송
 ------------------------------------
 
-LIVE 소스로부터 수신 받은 HLS을 별도로 Packetizing하지 않고 HLS 클라이언트에게 전송한다. 
+LIVE 소스로부터 수신 받은 HLS을 별도로 Packetizing 없이 HLS 클라이언트에게 전송한다. 
+
+.. note::
+
+   :ref:`multi-protocol-vod-apple-hls-session` 이외의 설정은 무시된다.
 
 
 

@@ -3,7 +3,7 @@
 장기통계
 ******************
 
-5분 이전의 통계는 "평균 Gauge" 로 RRD와 Graph API를 통해 제공된다.
+5분 이전의 통계는 "평균 Gauge" 로 RRD에 기록되며, Graph API를 통해 제공된다.
 
 ===================== ================ ================== =================== ============== =============  ========= ===========
 Graph 이름             시간단위           보관날짜(일)          # of lines          Interval       RRA
@@ -123,12 +123,11 @@ STON Edge 서버와 다른 점에 대해서만 명시한다.
 
     /graph/vhost/client_traffic_day.png?vhost=www.example.com/bar
 
-
-해당 가상호스트에 ``/myLiveStream`` 라는 채널이 있다면 다음과 같이 호출한다. ::
+해당 가상호스트에 속한 ``/myLiveStream`` 라는 채널이 있다면 vhost에 추가적으로 채널명을 붙인다. ::
 
     /graph/vhost/client_traffic_day.png?vhost=www.example.com/bar/myLiveStream
 
-채널이 존재하지 않는 경우 404 Not Found로 응답한다.
+가상호스트는 존재하나 해당 채널이 없다면 404 Not Found로 응답한다.
 
 
 
@@ -157,7 +156,7 @@ Graph 이름         기본 기간
 
 ``end`` 파라미터가 생략되면 start를 기준으로 위 표에 명시된 기간만큼 그래프가 그려진다. 
 
-예를 들어 2017년 7월 1일의 가상호스트 ``www.example.com/bar`` 의 채널 ``/myLiveStream`` 의 주간 평균 클라이언트 트래픽을 보고 싶다면 아래와 같이 입력한다. ::
+예를 들어 2017년 7월 1일부터 가상호스트 ``www.example.com/bar`` 의 채널 ``/myLiveStream`` 의 주간 평균 클라이언트 트래픽을 보고 싶다면 아래와 같이 입력한다. ::
 
   /graph/vhost/client_traffic_week.png?vhost=www.example.com/bar&start=201707010000
 
