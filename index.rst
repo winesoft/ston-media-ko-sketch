@@ -17,6 +17,7 @@ Draft
    admin/access_control
    admin/monitoring_stats
    admin/rrd
+   admin/snmp
 
 
 Idea
