@@ -144,24 +144,23 @@ API 호출규격은 다음와 같다. ::
 
 지원되는 ``target`` 은 다음과 같다.
 
-========================= ================================================= ===================== =========================
-Target                    설명                                                Main line             Sub line                 
-========================= ================================================= ===================== =========================
-cpu                       CPU 사용량                                          Kernel + User          Kernel                   
-ston_media_server_cpu     STON 미디어 서버 CPU 사용량                              Kernel + User         Kernel                   
-memory                    메모리 사용량                                          전체 사용량                STON 미디어 서버 사용량            
-iowait                    IO Wait                                           IO Wait               
-loadavg                   Load Average                                      Load Average          
-ssockevent                서버소켓 이벤트 (클라이언트 -> STON)                        Accepted               Closed                   
-ssockusage                서버소켓 사용량 (클라이언트 -> STON)                        전체                     Established               
-csockevent                클라이언트소켓 이벤트 (STON -> 원본서버)                      Connected              Closed                   
-csockusage                클라이언트소켓 사용량 (STON -> 원본서버)                      전체                     Established               
+========================= ================================================= ============================================== =========================== 
+Target                    설명                                               Main line                                      Sub line                 
+========================= ================================================= ============================================== =========================== 
+cpu                       CPU 사용량                                          Kernel + User                                  Kernel                   
+ston_media_server_cpu     STON 미디어 서버 CPU 사용량                            Kernel + User                                  Kernel                   
+memory                    메모리 사용량                                         전체 사용량                                       STON 미디어 서버 사용량            
+iowait                    IO Wait                                            IO Wait               
+loadavg                   Load Average                                       Load Average          
+ssockevent                서버소켓 이벤트 (클라이언트 -> STON)                     Accepted                                        Closed                   
+ssockusage                서버소켓 사용량 (클라이언트 -> STON)                     전체                                              Established               
+csockevent                클라이언트소켓 이벤트 (STON -> 원본서버)                   Connected                                       Closed                   
+csockusage                클라이언트소켓 사용량 (STON -> 원본서버)                   전체                                            Established               
 acldenied                 차단된 IP접근                                         차단된 클라이언트            
 eq                        이벤트 큐                                            이벤트 큐                 
-wf2w                      쓰기 대기 중인 파일개수                                   쓰기 대기중              
-tcpsocket                 .. figure:: img/graph_tcpsocket_detail.png                                                       
-                          TCP 소켓 상태                                                                                        
-========================= ================================================= ===================== =========================
+wf2w                      쓰기 대기 중인 파일개수                                 쓰기 대기중              
+tcpsocket                 TCP 소켓 상태                                       .. figure:: img/graph_tcpsocket_detail.png 
+========================= ================================================= ============================================== =========================== 
 
 
 
