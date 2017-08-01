@@ -112,7 +112,7 @@ API를 통해 저장된 RRD를 Graph로 추출한다.
 이 중 시간(start, end)에서 사용할 수 있는 표현은 아래와 같다.
 
 ======================== ================================================================================
-표현                      설명
+표현                       설명
 ======================== ================================================================================
 Oct 12                   October 12 this year
 -1month or -1m           current time of day, only a month before (may yield surprises, see NOTE3 above).
@@ -144,24 +144,24 @@ API 호출규격은 다음와 같다. ::
 
 지원되는 ``target`` 은 다음과 같다.
 
-========================= ===================== ============================== ======================================
-Target                    Main line             Sub line                       설명
-========================= ===================== ============================== ======================================
-cpu                       Kernel + User         Kernel                         CPU 사용량
-ston_media_server_cpu     Kernel + User         Kernel                         STON 미디어 서버 CPU 사용량
-memory                    전체 사용량              STON 미디어 서버 사용량            메모리 사용량
-iowait                    IO Wait               (없음)                          IO Wait
-loadavg                   Load Average          (없음)                          Load Average
-ssockevent                Accepted              Closed                         서버소켓 이벤트 (클라이언트 -> STON)
-ssockusage                전체                   Established                    서버소켓 사용량 (클라이언트 -> STON)
-csockevent                Connected             Closed                         클라이언트소켓 이벤트 (STON -> 원본서버)
-csockusage                전체                   Established                    클라이언트소켓 사용량 (STON -> 원본서버)
-acldenied                 차단된 클라이언트         (없음)                           차단된 IP접근
-eq                        이벤트 큐               (없음)                           이벤트 큐
-wf2w                      쓰기 대기중              (없음)                          쓰기 대기 중인 파일개수
-tcpsocket                                                                      .. figure:: img/graph_tcpsocket_detail.png
-                                                                               TCP 소켓 상태
-========================= ===================== ============================== ======================================
+========================= ================================================= ===================== =========================
+Target                    설명                                                Main line             Sub line                 
+========================= ================================================= ===================== =========================
+cpu                       CPU 사용량                                          Kernel + User          Kernel                   
+ston_media_server_cpu     STON 미디어 서버 CPU 사용량                              Kernel + User         Kernel                   
+memory                    메모리 사용량                                          전체 사용량                STON 미디어 서버 사용량            
+iowait                    IO Wait                                           IO Wait               
+loadavg                   Load Average                                      Load Average          
+ssockevent                서버소켓 이벤트 (클라이언트 -> STON)                        Accepted               Closed                   
+ssockusage                서버소켓 사용량 (클라이언트 -> STON)                        전체                     Established               
+csockevent                클라이언트소켓 이벤트 (STON -> 원본서버)                      Connected              Closed                   
+csockusage                클라이언트소켓 사용량 (STON -> 원본서버)                      전체                     Established               
+acldenied                 차단된 IP접근                                         차단된 클라이언트            
+eq                        이벤트 큐                                            이벤트 큐                 
+wf2w                      쓰기 대기 중인 파일개수                                   쓰기 대기중              
+tcpsocket                 .. figure:: img/graph_tcpsocket_detail.png                                                       
+                          TCP 소켓 상태                                                                                        
+========================= ================================================= ===================== =========================
 
 
 
@@ -178,45 +178,44 @@ API 호출규격은 다음와 같다. ::
 
 ``target`` 마다 ``protocol`` 지원이 다르다.
 
-============================ ================================================================ ========================== ============================== ===================================================
-Target                       Protocol                                                         Main line                  Sub line                       설명
-============================ ================================================================ ========================== ============================== ===================================================
-hitratio                     ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Request Hit Ratio          Byte Hit Ratio                 히트율
-client_res_hit               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``                                                                     .. figure:: img/graph_filehit.png
-                                                                                                                                                        클라이언트 캐싱응답
-client_session               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           전체 세션                    전송 중 세션                      클라이언트 세션
-client_traffic               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Inbound                    Outbound                       클라이언트 트래픽
-client_res                   ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답횟수                     요청횟수                         클라이언트 응답
-client_res_complete          ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                요청횟수                         클라이언트 트랜잭션
-client_res_time              ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답시간                     (없음)                          클라이언트 응답시간
-client_res_complete_time     ``http`` , ``hls`` , ``mpegdash``                                트랜잭션 완료시간              (없음)                           클라이언트 완료시간
-client_rtmp_res_detail                                                                                                                                  .. figure:: img/sms_rtmp_graph_detail.png
-                                                                                                                                                        RTMP 클라이언트 상세응답
-client_http_res_detail                                                                                                                                  .. figure:: img/graph_rescode_detail.png
-                                                                                                                                                        HTTP 클라이언트 상세응답
-client_hls_res_detail                                                                                                                                   .. figure:: img/graph_rescode_detail.png
-                                                                                                                                                        HLS 클라이언트 상세응답
-client_mpegdash_res_detail                                                                                                                              .. figure:: img/graph_rescode_detail.png
-                                                                                                                                                        MPEG-DASH 클라이언트 상세응답
-
-origin_session               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           전체 세션                    전송 중 세션                      원본서버 세션
-origin_traffic               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Inbound                    Outbound                       원본서버 트래픽
-origin_res                   ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답횟수                     요청횟수                         원본서버 응답
-origin_res_complete          ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                요청횟수                         원본서버 트랜잭션
-origin_res_time              ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답시간                     (없음)                          원본서버 응답시간
-origin_res_complete_time     ``http`` , ``hls`` , ``mpegdash``                                트랜잭션 완료시간              (없음)                           원본서버 완료시간
-origin_rtmp_res_detail                                                                                                                                  .. figure:: img/sms_rtmp_graph_detail.png
-                                                                                                                                                        RTMP 원본서버 상세응답
-origin_http_res_detail                                                                                                                                  .. figure:: img/graph_rescode_detail.png
-                                                                                                                                                        HTTP 원본서버 상세응답
-origin_hls_res_detail                                                                                                                                   .. figure:: img/graph_rescode_detail.png
-                                                                                                                                                        HLS 원본서버 상세응답
-origin_mpegdash_res_detail                                                                                                                              .. figure:: img/graph_rescode_detail.png
-                                                                                                                                                        MPEG-DASH 원본서버 상세응답
-filecount                                                                                                                                               .. figure:: img/graph_filecount_detail.png
-                                                                                                                                                        캐싱 콘텐츠 분포
-mem                                                                                                                                                     메모리에 적재된 콘텐츠 데이터량
-============================ ================================================================ ========================== ============================== ===================================================
+============================ =================================================== ================================================================ ========================== ==========================
+Target                       설명                                                  Protocol                                                         Main line                  Sub line                  
+============================ =================================================== ================================================================ ========================== ==========================
+hitratio                     히트율                                                 ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Request Hit Ratio          Byte Hit Ratio            
+client_res_hit               .. figure:: img/graph_filehit.png                   ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``                                                                
+                             클라이언트 캐싱응답                                                                                                                                                                
+client_session               클라이언트 세션                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           전체 세션                      전송 중 세션                     
+client_traffic               클라이언트 트래픽                                          ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Inbound                    Outbound                  
+client_res                   클라이언트 응답                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답횟수                       요청횟수                        
+client_res_complete          클라이언트 트랜잭션                                         ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                  요청횟수                         
+client_res_time              클라이언트 응답시간                                         ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답시간                      
+client_res_complete_time     클라이언트 완료시간                                         ``http`` , ``hls`` , ``mpegdash``                                트랜잭션 완료시간             
+client_rtmp_res_detail       .. figure:: img/sms_rtmp_graph_detail.png                                                                                                                                 
+                             RTMP 클라이언트 상세응답                                                                                                                                                           
+client_http_res_detail       .. figure:: img/graph_rescode_detail.png                                                                                                                                  
+                             HTTP 클라이언트 상세응답                                                                                                                                                           
+client_hls_res_detail        .. figure:: img/graph_rescode_detail.png                                                                                                                                  
+                             HLS 클라이언트 상세응답                                                                                                                                                            
+client_mpegdash_res_detail   .. figure:: img/graph_rescode_detail.png                                                                                                                                  
+                             MPEG-DASH 클라이언트 상세응답                                                                                                                                                      
+origin_session               원본서버 세션                                            ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           전체 세션                      전송 중 세션                     
+origin_traffic               원본서버 트래픽                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Inbound                    Outbound                  
+origin_res                   원본서버 응답                                            ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답횟수                       요청횟수                        
+origin_res_complete          원본서버 트랜잭션                                          ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                  요청횟수                         
+origin_res_time              원본서버 응답시간                                          ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답시간                     
+origin_res_complete_time     원본서버 완료시간                                          ``http`` , ``hls`` , ``mpegdash``                                트랜잭션 완료시간       
+origin_rtmp_res_detail       .. figure:: img/sms_rtmp_graph_detail.png                                                                                                                                 
+                             RTMP 원본서버 상세응답                                                                                                                                                            
+origin_http_res_detail       .. figure:: img/graph_rescode_detail.png                                                                                                                                  
+                             HTTP 원본서버 상세응답                                                                                                                                                            
+origin_hls_res_detail        .. figure:: img/graph_rescode_detail.png                                                                                                                                  
+                             HLS 원본서버 상세응답                                                                                                                                                             
+origin_mpegdash_res_detail   .. figure:: img/graph_rescode_detail.png                                                                                                                                  
+                             MPEG-DASH 원본서버 상세응답                                                                                                                                                       
+filecount                    .. figure:: img/graph_filecount_detail.png                                                                                                                                
+                             캐싱 콘텐츠 분포                                                                                                                                                                 
+mem                          메모리에 적재된 콘텐츠 데이터량                                                                                                                                                         
+============================ =================================================== ================================================================ ========================== ==========================
 
 
 
