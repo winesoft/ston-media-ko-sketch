@@ -181,12 +181,11 @@ API 호출규격은 다음와 같다. ::
 Target                       설명                                                 Protocol                                                         Main line                            Sub line                  
 ============================ =================================================== ================================================================ ==================================== =======================
 hitratio                     히트율                                                ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Request Hit Ratio                    Byte Hit Ratio            
-client_res_hit               클라이언트 캐쉬 히트                                     ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           .. figure:: img/graph_filehit.png                                                
-                             클라이언트 캐싱응답                                                                                                                                                                
-client_session               클라이언트 세션                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           전체 세션                      전송 중 세션                     
-client_traffic               클라이언트 트래픽                                          ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Inbound                    Outbound                  
-client_res                   클라이언트 응답                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답횟수                       요청횟수                        
-client_res_complete          클라이언트 트랜잭션                                         ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                  요청횟수                         
+client_res_hit               클라이언트 캐쉬 히트                                     ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``            .. figure:: img/graph_filehit.png                                                                                                      
+client_session               클라이언트 세션                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           전체 세션                              전송 중 세션                     
+client_traffic               클라이언트 트래픽                                          ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Inbound                            Outbound                  
+client_res                   클라이언트 응답                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답횟수                               요청횟수                        
+client_res_complete          클라이언트 트랜잭션                                         ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                          요청횟수                         
 client_res_time              클라이언트 응답시간                                         ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답시간                      
 client_res_complete_time     클라이언트 완료시간                                         ``http`` , ``hls`` , ``mpegdash``                                트랜잭션 완료시간             
 client_rtmp_res_detail       .. figure:: img/sms_rtmp_graph_detail.png                                                                                                                                 
@@ -197,10 +196,10 @@ client_hls_res_detail        .. figure:: img/graph_rescode_detail.png
                              HLS 클라이언트 상세응답                                                                                                                                                            
 client_mpegdash_res_detail   .. figure:: img/graph_rescode_detail.png                                                                                                                                  
                              MPEG-DASH 클라이언트 상세응답                                                                                                                                                      
-origin_session               원본서버 세션                                            ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           전체 세션                      전송 중 세션                     
-origin_traffic               원본서버 트래픽                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Inbound                    Outbound                  
-origin_res                   원본서버 응답                                            ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답횟수                       요청횟수                        
-origin_res_complete          원본서버 트랜잭션                                          ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                  요청횟수                         
+origin_session               원본서버 세션                                            ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           전체 세션                              전송 중 세션                     
+origin_traffic               원본서버 트래픽                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Inbound                            Outbound                  
+origin_res                   원본서버 응답                                            ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답횟수                               요청횟수                        
+origin_res_complete          원본서버 트랜잭션                                          ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                          요청횟수                         
 origin_res_time              원본서버 응답시간                                          ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답시간                     
 origin_res_complete_time     원본서버 완료시간                                          ``http`` , ``hls`` , ``mpegdash``                                트랜잭션 완료시간       
 origin_rtmp_res_detail       .. figure:: img/sms_rtmp_graph_detail.png                                                                                                                                 
