@@ -182,11 +182,11 @@ API 호출규격은 다음와 같다. ::
 Target                       Protocol                                                         Main line                  Sub line                       설명
 ============================ ================================================================ ========================== ============================== ===================================================
 hitratio                     ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Request Hit Ratio          Byte Hit Ratio                 히트율
+client_res_hit               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``                                                                     .. figure:: img/graph_filehit.png
+                                                                                                                                                        클라이언트 캐싱응답
 ============================ ================================================================ ========================== ============================== ===================================================
 
                                                                  
-client_res_hit               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``                                                                     .. figure:: img/graph_filehit.png
-                                                                                                                                                        클라이언트 캐싱응답
 client_session               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``       전체 세션                     전송 중 세션                         클라이언트 세션
 client_traffic               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``       Inbound                     Outbound                      클라이언트 트래픽
 client_res                   ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``       응답횟수                      요청횟수                         클라이언트 응답
