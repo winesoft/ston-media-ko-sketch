@@ -198,20 +198,13 @@ origin_res                   원본서버 응답                                
 origin_res_complete          원본서버 트랜잭션                                         ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                                        요청횟수                         
 origin_res_time              원본서버 응답시간                                         ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답시간                     
 origin_res_complete_time     원본서버 완료시간                                         ``http`` , ``hls`` , ``mpegdash``                                트랜잭션 완료시간       
-mem                          메모리에 적재된 콘텐츠 데이터량                                                                                                                                                         
+origin_rtmp_res_detail       RTMP 원본서버 상세응답                                                                                                    .. figure:: img/sms_rtmp_graph_detail.png      
+origin_http_res_detail       HTTP 원본서버 상세응답                                                                                                    .. figure:: img/graph_rescode_detail.png 
+origin_hls_res_detail        HLS 원본서버 상세응답                                                                                                     .. figure:: img/graph_rescode_detail.png  
+origin_mpegdash_res_detail   MPEG-DASH 원본서버 상세응답                                                                                               .. figure:: img/graph_rescode_detail.png 
+filecount                    캐싱 콘텐츠 분포                                                                                                          .. figure:: img/graph_filecount_detail.png                                                                                                                                
+mem                          메모리 캐싱 콘텐츠 크기                                                                                                                                                         
 ============================ =================================================== ================================================================ =================================================== ============================
-
-origin_rtmp_res_detail       .. figure:: img/sms_rtmp_graph_detail.png                                                                                                                                 
-                             RTMP 원본서버 상세응답                                                                                                                                                            
-origin_http_res_detail       .. figure:: img/graph_rescode_detail.png                                                                                                                                  
-                             HTTP 원본서버 상세응답                                                                                                                                                            
-origin_hls_res_detail        .. figure:: img/graph_rescode_detail.png                                                                                                                                  
-                             HLS 원본서버 상세응답                                                                                                                                                             
-origin_mpegdash_res_detail   .. figure:: img/graph_rescode_detail.png                                                                                                                                  
-                             MPEG-DASH 원본서버 상세응답                                                                                                                                                       
-filecount                    .. figure:: img/graph_filecount_detail.png                                                                                                                                
-                             캐싱 콘텐츠 분포                                                                                                                                                                 
-
 
 
 채널 그래프
