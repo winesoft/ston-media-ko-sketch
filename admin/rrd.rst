@@ -190,19 +190,17 @@ client_res_time              클라이언트 응답시간                       
 client_res_complete_time     클라이언트 완료시간                                      ``http`` , ``hls`` , ``mpegdash``                                 트랜잭션 완료시간             
 client_rtmp_res_detail       RTMP 클라이언트 상세응답                                                                                                  .. figure:: img/sms_rtmp_graph_detail.png    
 client_http_res_detail       HTTP 클라이언트 상세응답                                                                                                  .. figure:: img/graph_rescode_detail.png
-client_hls_res_detail        HLS 클라이언트 상세응답                                                                                                   .. figure:: img/graph_rescode_detail.pn
+client_hls_res_detail        HLS 클라이언트 상세응답                                                                                                   .. figure:: img/graph_rescode_detail.png
 client_mpegdash_res_detail   MPEG-DASH 클라이언트 상세응답                                                                                             .. figure:: img/graph_rescode_detail.png  
+origin_session               원본서버 세션                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           전체 세션                              전송 중 세션                     
+origin_traffic               원본서버 트래픽                                          ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Inbound                            Outbound                  
+origin_res                   원본서버 응답                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답횟수                               요청횟수                        
+origin_res_complete          원본서버 트랜잭션                                         ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                          요청횟수                         
+origin_res_time              원본서버 응답시간                                         ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답시간                     
+origin_res_complete_time     원본서버 완료시간                                         ``http`` , ``hls`` , ``mpegdash``                                트랜잭션 완료시간       
+mem                          메모리에 적재된 콘텐츠 데이터량                                                                                                                                                         
 ============================ =================================================== ================================================================ =================================================== ============================
 
-
-
-
-origin_session               원본서버 세션                                            ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           전체 세션                              전송 중 세션                     
-origin_traffic               원본서버 트래픽                                           ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Inbound                            Outbound                  
-origin_res                   원본서버 응답                                            ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답횟수                               요청횟수                        
-origin_res_complete          원본서버 트랜잭션                                          ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                          요청횟수                         
-origin_res_time              원본서버 응답시간                                          ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답시간                     
-origin_res_complete_time     원본서버 완료시간                                          ``http`` , ``hls`` , ``mpegdash``                                트랜잭션 완료시간       
 origin_rtmp_res_detail       .. figure:: img/sms_rtmp_graph_detail.png                                                                                                                                 
                              RTMP 원본서버 상세응답                                                                                                                                                            
 origin_http_res_detail       .. figure:: img/graph_rescode_detail.png                                                                                                                                  
@@ -213,7 +211,7 @@ origin_mpegdash_res_detail   .. figure:: img/graph_rescode_detail.png
                              MPEG-DASH 원본서버 상세응답                                                                                                                                                       
 filecount                    .. figure:: img/graph_filecount_detail.png                                                                                                                                
                              캐싱 콘텐츠 분포                                                                                                                                                                 
-mem                          메모리에 적재된 콘텐츠 데이터량                                                                                                                                                         
+
 
 
 채널 그래프
