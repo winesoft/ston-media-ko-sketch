@@ -98,7 +98,8 @@ Graph
 API를 통해 저장된 RRD를 Graph로 추출한다. 
 한 그래프에는 최소 1개 이상의 선이 그려지는데 주로 Main 라인은 녹색, Sub 라인은 파란색으로 그려진다. ::
 
-   /graph_xxx?key1=value1&key2=value2...
+   /graph_global?target=...&step=...&start=...&end=...
+   /graph_vhost? target=...&step=...&start=...&end=...&vhost=...&protocol=...
 
 공통적으로 지원되는 Key/Value는 아래와 같다.
 
@@ -167,9 +168,19 @@ tcpsocket                                                                      .
 
 
 
+전역자원
+---------------------
+
+전역자원에서 지원되는 Graph 형태는 아래와 같다. ::
+
+   /graph_global?target=...
+                &step=...
+                &start=...
+                &end=...
+
+지원되는 target은 다음과 같다.
 
 
-tcpsocket                                                                      TCP 소켓상태
 
 
 채널 그래프
