@@ -184,24 +184,25 @@ Target                       Protocol                                           
 hitratio                     ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Request Hit Ratio          Byte Hit Ratio                 히트율
 client_res_hit               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``                                                                     .. figure:: img/graph_filehit.png
                                                                                                                                                         클라이언트 캐싱응답
-                                                                                                                                                        client_session               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``       전체 세션                     전송 중 세션                         클라이언트 세션
+client_session               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           전체 세션                    전송 중 세션                      클라이언트 세션
 client_traffic               ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           Inbound                    Outbound                       클라이언트 트래픽
 client_res                   ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답횟수                     요청횟수                         클라이언트 응답
 client_res_complete          ``http`` , ``hls`` , ``mpegdash``                                완료된 응답횟수                요청횟수                         클라이언트 트랜잭션
 client_res_time              ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``           응답시간                     (없음)                          클라이언트 응답시간
 client_res_complete_time     ``http`` , ``hls`` , ``mpegdash``                                트랜잭션 완료시간              (없음)                           클라이언트 완료시간
+client_rtmp_res_detail                                                                                                                                  .. figure:: img/sms_rtmp_graph_detail.png
+                                                                                                                                                        RTMP 클라이언트 상세응답
+client_http_res_detail                                                                                                                                  .. figure:: img/graph_rescode_detail.png
+                                                                                                                                                        HTTP 클라이언트 상세응답
+client_hls_res_detail                                                                                                                                   .. figure:: img/graph_rescode_detail.png
+                                                                                                                                                        HLS 클라이언트 상세응답
+client_mpegdash_res_detail                                                                                                                              .. figure:: img/graph_rescode_detail.png
+                                                                                                                                                        MPEG-DASH 클라이언트 상세응답
 ============================ ================================================================ ========================== ============================== ===================================================
 
                                                                  
 
-client_rtmp_res_detail                                                                                                                              .. figure:: img/sms_rtmp_graph_detail.png
-                                                                                                                                                    RTMP 클라이언트 상세응답
-client_http_res_detail                                                                                                                              .. figure:: img/graph_rescode_detail.png
-                                                                                                                                                    HTTP 클라이언트 상세응답
-client_hls_res_detail                                                                                                                              .. figure:: img/graph_rescode_detail.png
-                                                                                                                                                    HLS 클라이언트 상세응답
-client_mpegdash_res_detail                                                                                                                              .. figure:: img/graph_rescode_detail.png
-                                                                                                                                                    MPEG-DASH 클라이언트 상세응답
+
 
 
 ``protocol`` 을 지원하지 않는 ``target`` 은 모두 가상호스트에 종속된 자원으로 다음과 같다.
