@@ -189,10 +189,11 @@ client_res_complete          클라이언트 트랜잭션                       
 client_res_time              클라이언트 응답시간                                      ``all`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash``            응답시간                      
 client_res_complete_time     클라이언트 완료시간                                      ``http`` , ``hls`` , ``mpegdash``                                 트랜잭션 완료시간             
 client_rtmp_res_detail       RTMP 클라이언트 상세응답                                                                                                  .. figure:: img/sms_rtmp_graph_detail.png    
+client_http_res_detail       HTTP 클라이언트 상세응답                                                                                                  .. figure:: img/graph_rescode_detail.png
+client_hls_res_detail        HLS 클라이언트 상세응답                                                                                                   .. figure:: img/graph_rescode_detail.pn
+client_mpegdash_res_detail   MPEG-DASH 클라이언트 상세응답                                                                                             .. figure:: img/graph_rescode_detail.png  
 ============================ =================================================== ================================================================ =================================================== ============================
-client_http_res_detail       HTTP 클라이언트 상세응답                                                                                                   .. figure:: img/graph_rescode_detail.png
-client_hls_res_detail        HLS 클라이언트 상세응답                                                                                                    .. figure:: img/graph_rescode_detail.pn
-client_mpegdash_res_detail   MPEG-DASH 클라이언트 상세응답                                                                                              .. figure:: img/graph_rescode_detail.png  
+
 
 
 
