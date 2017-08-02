@@ -212,7 +212,7 @@ mem                          메모리 캐싱 콘텐츠 크기
 
 채널별 그래프를 제공한다. 
 채널은 ``vhost`` 값에 채널명을 붙여서 표현한다. 
-예를 들어 가상호스트 ``www.example.com/bar`` 에 대한 (5분 단위) 클라이언트 트래픽 조회 API 아래와 같다. ::
+예를 들어 가상호스트 ``www.example.com/bar`` 에 대한 클라이언트 트래픽 조회 API 아래와 같다. ::
 
     /graph_vhost?target=client_traffic&vhost=www.example.com/bar&...
 
