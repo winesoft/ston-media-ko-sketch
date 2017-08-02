@@ -171,7 +171,7 @@ API 호출규격은 다음와 같다. ::
 
    /graph_vhost?target=...&step=...&start=...&end=...&vhost=...&protocol=...
 
-- ``vhost`` - 특정 가상호스트를 지정할 수 있으며, 생략된 경우 전체 가상호스트를 합친 결과를 제공한다.
+- ``vhost`` - 특정 가상호스트를 지정할 수 있으며, 생략된 경우 전체 가상호스트의 합을 제공한다.
 - ``protocol`` - 프로토콜별 그래프를 제공한다. ``all (기본)`` , ``rtmp`` , ``http`` , ``hls`` , ``mpegdash`` 중 선택한다.
 
 ``target`` 마다 ``protocol`` 지원이 다르다.
@@ -210,62 +210,25 @@ mem                          메모리 캐싱 콘텐츠 크기
 채널 그래프
 ---------------------
 
-채널은 아래 명시한 일부를 제외하고가상호스트가 제공하는 ``target`` 을 대부분 동일하게 제공한다. 
-
-.. note::
-
-   제공하지 않는 API 목록 ::
-
-      /graph/vhost/filecount_*.png
-      /graph/vhost/mem_*.png
-
-
-
+채널별 그래프를 제공한다. 
+채널은 ``vhost`` 값에 채널명을 붙여서 표현한다. 
 예를 들어 가상호스트 ``www.example.com/bar`` 에 대한 (5분 단위) 클라이언트 트래픽 조회 API 아래와 같다. ::
 
-    /graph/vhost/client_traffic_day.png?vhost=www.example.com/bar
+    /graph_vhost?target=client_traffic&vhost=www.example.com/bar&...
 
 해당 가상호스트에 속한 ``/myLiveStream`` 라는 채널이 있다면 vhost에 추가적으로 채널명을 붙인다. ::
 
-    /graph/vhost/client_traffic_day.png?vhost=www.example.com/bar/myLiveStream
+    /graph_vhost?target=client_traffic&vhost=www.example.com/bar/myLiveStream&...
 
-가상호스트는 존재하나 해당 채널이 없다면 404 Not Found로 응답한다.
-
-
+채널은 ``filecount`` 와 ``mem`` 을 제외한 모든 ``target`` 을 `가상호스트`_ 와 동일하게 제공한다.
 
 
-조회 범위
+
+WM Graph 예제
 ---------------------
 
-절대시간을 파라미터로 입력하여 그래프를 생성한다. ::
+WM에서 제공되는 Graph 예제는 다음과 같다.
 
-   /graph/vhost/client_traffic_day.png?vhost={가상호스트명}&start={yyyyMMddHHmm}&end={yyyyMMddHHmm}
+.. note::
 
-분(mm) 조건은 5분 단위로 내림된다. 
-예를 들어 HHmm 조건을 1722 라고 입력했다면 이 수치는 5분 단위를 맞추기 위해 11720 으로 내림된다.
-
-``start`` 파라미터가 생략되면 5분 전 통계를 기준으로 아래와 같이 그래프를 제공한다.
-
-================= =================
-Graph 이름         기본 기간
-================= =================
-*_day.png         2일 (48시간)
-*_week.png        2주 (14일)
-*_month.png       7주
-*_year.png        9개월
-*_year2.png       18개월
-================= =================
-
-``end`` 파라미터가 생략되면 start를 기준으로 위 표에 명시된 기간만큼 그래프가 그려진다. 
-
-예를 들어 2017년 7월 1일부터 가상호스트 ``www.example.com/bar`` 의 채널 ``/myLiveStream`` 의 주간 평균 클라이언트 트래픽을 보고 싶다면 아래와 같이 입력한다. ::
-
-  /graph/vhost/client_traffic_week.png?vhost=www.example.com/bar&start=201707010000
-
-
-/graph ? 
-          target=
-          vhost=
-          foramt=png
-          start= 
-          end=
+   WM Graph 재구성할 때 사용된 호출규격 테이블로 명시
