@@ -23,7 +23,7 @@ SNMP
    cache.vhost.[vhostIndex].traffic.client.rtmp.inbound.1    // 1분 평균
    cache.vhost.[vhostIndex].traffic.client.rtmp.inbound.5    // 5분 평균
 
-시간 평균은 미리 정의된 값 (실시간, 1분, 5분)만을 제공한다.
+기존에 제공하던 시간 평균은 실시간(.0), 1분(.1), 5분(.5) 만을 제공하며 각 항목에 별도로 명시한다.
 
 
 .. toctree::
