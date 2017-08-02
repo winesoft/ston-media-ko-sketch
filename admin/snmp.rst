@@ -13,7 +13,7 @@ SNMP
    // New
    cache.vhost.[vhostIndex].contents.memory
 
-특히 다음과 같이 변수를 2개(vhostMin, vhostIndex) 사용하던 구조를 삭제하고 변수는 [vhostIndex] 하나만 사용한다.
+특히 다음과 같이 변수를 2개(vhostMin, vhostIndex) 사용하던 구조를 삭제하고 변수는 [vhostIndex] 하나만 사용한다. ::
 
    // Old
    cache.vhost.traffic.client.rtmp.inbound.[vhostMin].[vhostIndex]
