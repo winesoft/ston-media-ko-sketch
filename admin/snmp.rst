@@ -176,6 +176,25 @@ www.example.com/bar        30,000
    채널의 개수제한은 없지만 SNMP에서는 최대 9,999개의 채널만 수치제공이 가능하다.
 
 
+
+                   
+설정 ``[confIndex]``
+---------------------
+
+설정이 업데이트 내역을 SNMP를 통해 열람할 수 있다. ::
+
+   # server.xml - <Server><Host>
+
+   <SNMP ConfCount="10" />
+
+-  ``ConfCount (기본: 10)`` 설정목록을 n개까지 열람한다.
+   1~100사이에서 지정 가능하다.
+   1은 현재 반영된 설정을 의미하며 2는 이전 설정을 의미한다.
+   100은 현재를 기준으로 99번 이전의 설정을 의미한다.
+
+`meta.conf`_ 를 참조한다.
+
+
                    
 디스크 ``[diskIndex]``
 ---------------------
@@ -221,7 +240,7 @@ OID   Name          Type      Description
 .5    state         String    "Healthy" 또는 "Inactive" 또는 "Emergency"
 .6    uptime        Integer   실행시간 (초)
 .7    admin         String    <Admin> ... </Admin>
-.10   Conf          OID       Conf 확장
+.10   Conf          OID       설정 (확장)
 ===== ============= ========= ===========================================
 
 
@@ -233,7 +252,7 @@ meta.conf
 
 ::
 
-   OID = 1.3.6.1.4.1.40001.2.1.10.[confIndex]
+   OID = 1.3.6.1.4.1.40001.2.1.10. ``[confIndex]``
 
 ``[confIndex]`` 는 ``<SNMP>`` 의 ``ConfCount`` 속성에서 설정한다.
 ``[confIndex]`` 가 1인 경우는 항상 현재 적용된 설정 값을, 
@@ -286,8 +305,8 @@ OID                 Name                                      Type    Descriptio
 .15                 memSTONRatio                              Integer STON 미디어 서버 메모리 사용률 (100%)
 .16                                                                   STON 미디어 서버 메모리 사용률 (10000%)
 .17                 diskCount                                 Integer disk개수
-.18.1               diskInfo                                  OID     diskInfo확장
-.19.1               diskPerf                                  OID     diskPerf확장
+.18                 diskInfo                                  OID     diskInfo (확장)
+.19                 diskPerf                                  OID     diskPerf (확장)
 .20                 cpuProcKernel                             Integer STON 미디어 서버가 사용하는 CPU(Kernel) 사용률 (100%)
 .21                                                                   STON 미디어 서버가 사용하는 CPU(Kernel) 사용률 (10000%)
 .22                 cpuProcUser                               Integer STON 미디어 서버가 사용하는 CPU(User) 사용률 (100%)
@@ -321,7 +340,7 @@ system.diskInfo
 
 ::
 
-   OID = 1.3.6.1.4.1.40001.2.2.18.1. ``[diskIndex]``
+   OID = 1.3.6.1.4.1.40001.2.2.18. ``[diskIndex]``
 
 현재 디스크 정보를 제공한다.
 
@@ -346,7 +365,7 @@ system.diskPerf
 
 ::
 
-   OID = 1.3.6.1.4.1.40001.2.2.19.1. ``[diskIndex]``
+   OID = 1.3.6.1.4.1.40001.2.2.19. ``[diskIndex]``
 
 디스크 성능상태 실시간(.0), 1분평균(.1), 5분평균(.5)으로 제공한다.
 
@@ -379,13 +398,8 @@ global
 
 STON 미디어 서버의 모든 모듈이 공통적으로 사용하는 자원정보(소켓, 이벤트 등)를 제공한다. 
 
--  **ServerSocket**
-   
-   클라이언트 ~ STON구간. STON이 클라이언트의 요청을 처리할 용도로 사용하는 소켓
-   
--  **ClientSocket**
-
-   STON ~ 원본서버구간. STON이 원본서버로 요청을 보내는 용도로 사용하는 소켓
+-  **ServerSocket** - 클라이언트 ~ STON구간. STON이 클라이언트의 요청을 처리할 용도로 사용하는 소켓
+-  **ClientSocket** - STON ~ 원본서버구간. STON이 원본서버로 요청을 보내는 용도로 사용하는 소켓
 
 ===== =========================================== ========== ==================================================
 OID   Name                                        Type       Description
@@ -418,14 +432,14 @@ cache
 
 캐시 서비스의 통계는 가상호스트별로 상세하게 수집/제공된다.
 
-====== ============== ========= ============================================================
-OID    Name           Type      Description
-====== ============== ========= ============================================================
-.1     host           OID       호스트 (확장)
-.2     vhostCount     Integer   가상호스트 개수
-.3     vhost          OID       가상호스트 통계 (확장)
-.4     vhostIndexMax  Integer   ``[vhostIndex]``  최대 값. SNMPWalk는 이 수치를 기준으로 동작한다.
-====== ============== ========= ============================================================
+====== ================== ========= ============================================================
+OID    Name               Type      Description
+====== ================== ========= ============================================================
+.1     host               OID       호스트 (확장)
+.2     vhostCount         Integer   가상호스트 + 채널 개수
+.3     vhost              OID       가상호스트 통계 (확장)
+.4     vhostOnlyCount     Integer   가상호스트 개수
+====== ================== ========= ============================================================
 
 
 
@@ -695,7 +709,7 @@ cache.host.traffic.origin.mpegdash
    
     OID = 1.3.6.1.4.1.40001.2.4.1.11.10.12
 
-MPEG-DASH 원본서버 트래픽 통계를 제공한다. 
+MPEG-DASH 원본서버 트래픽 통계를 실시간(.0), 1분 평균(.1), 5분 평균(.5)으로 제공한다. 
 
 ========================== =================================== ========== ===================================================================
 OID                        Name                                Type       Description
@@ -764,9 +778,71 @@ cache.host.traffic.origin.rtmp
    
     OID = 1.3.6.1.4.1.40001.2.4.1.11.10.20
 
-(지원예정) RTMP 원본서버 트래픽 통계를 실시간(.0), 1분 평균(.1), 5분 평균(.5)으로 제공한다.
+RTMP 원본서버 트래픽 통계를 실시간(.0), 1분 평균(.1), 5분 평균(.5)으로 제공한다.
+
+.. warning::
+
+   우선 클라이언트 RTMP와 동일하게 명시하였다. 
+   Push에 필요한 통계로 재정비해야 한다.
+
+============================================= ============================================= ========== =============================================================
+OID                                           Name                                          Type       Description                                                  
+============================================= ============================================= ========== =============================================================
+.1                                            inbound                                       Integer    원본서버로부터 받는 평균 트래픽(Bytes)
+.2                                            outbound                                      Integer    원본서버로 보내는 평균 트래픽(Bytes)
+.3                                            allSessionAverage                             Integer    원본서버 평균 세션수
+.4                                            activeSessionAverage                          Integer    원본서버 중 전송 중인 평균 세션수
+.10                                           reqHeaderSize                                 Integer    원본서버로부터 받는 평균 Header 트래픽(Bytes)
+.11                                           reqBodySize                                   Integer    원본서버로부터 받는 평균 Body 트래픽(Bytes)
+.12                                           resHeaderSize                                 Integer    원본서버로 보내는 평균 Header트래픽(Bytes)
+.13                                           resBodySize                                   Integer    원본서버로 보내는 평균 Body트래픽(Bytes)
+.14                                           reqAverage                                    Integer    원본서버로부터 받은 평균요청 개수
+.15                                           reqCount                                      Integer    원본서버로부터 받은 누적요청 개수
+.20                                           NetConnection.Connect                         Integer    NetConnection.Connect 응답통계
+.20.1                                         NetConnection.Connect.SuccessAverage          Integer    성공응답 평균개수 (평균)
+.20.2                                         NetConnection.Connect.SuccessCount            Integer    성공응답 평균개수
+.20.3                                         NetConnection.Connect.FailAverage             Integer    실패응답 평균개수 (평균)
+.20.4                                         NetConnection.Connect.FailCount               Integer    실패응답 평균개수
+.20.5                                         NetConnection.Connect.TimeRes                 Integer    응답 평균 소요시간(0.01ms)
+.21                                           NetConnection.CreateStream                    Integer    NetConnection.CreateStream 응답통계
+.21.1                                         NetConnection.CreateStream.SuccessAverage     Integer    성공응답 평균개수 (평균)
+.21.2                                         NetConnection.CreateStream.SuccessCount       Integer    성공응답 평균개수
+.21.3                                         NetConnection.CreateStream.FailAverage        Integer    실패응답 평균개수 (평균)
+.21.4                                         NetConnection.CreateStream.FailCount          Integer    실패응답 평균개수
+.21.5                                         NetConnection.CreateStream.TimeRes            Integer    응답 평균 소요시간(0.01ms)
+.30                                           NetStream.Play                                Integer    NetStream.Play 응답통계
+.30.1                                         NetStream.Play.SuccessAverage                 Integer    성공응답 평균개수 (평균)
+.30.2                                         NetStream.Play.SuccessCount                   Integer    성공응답 평균개수
+.30.3                                         NetStream.Play.FailAverage                    Integer    실패응답 평균개수 (평균)
+.30.4                                         NetStream.Play.FailCount                      Integer    실패응답 평균개수
+.30.5                                         NetStream.Play.TimeRes                        Integer    응답 평균 소요시간(0.01ms)
+.31                                           NetStream.Close                               Integer    NetStream.Close 응답통계
+.31.1                                         NetStream.Close.SuccessAverage                Integer    성공응답 평균개수 (평균)
+.31.2                                         NetStream.Close.SuccessCount                  Integer    성공응답 평균개수
+.31.3                                         NetStream.Close.FailAverage                   Integer    실패응답 평균개수 (평균)
+.31.4                                         NetStream.Close.FailCount                     Integer    실패응답 평균개수
+.31.5                                         NetStream.Close.TimeRes                       Integer    응답 평균 소요시간(0.01ms)
+.32                                           NetStream.Delete                              Integer    NetStream.Delete 응답통계
+.32.1                                         NetStream.Delete.SuccessAverage               Integer    성공응답 평균개수 (평균)
+.32.2                                         NetStream.Delete.SuccessCount                 Integer    성공응답 평균개수
+.32.3                                         NetStream.Delete.FailAverage                  Integer    실패응답 평균개수 (평균)
+.32.4                                         NetStream.Delete.FailCount                    Integer    실패응답 평균개수
+.32.5                                         NetStream.Delete.TimeRes                      Integer    응답 평균 소요시간(0.01ms)
+.33                                           NetStream.Seek                                Integer    NetStream.Seek 응답통계
+.33.1                                         NetStream.Seek.SuccessAverage                 Integer    성공응답 평균개수 (평균)
+.33.2                                         NetStream.Seek.SuccessCount                   Integer    성공응답 평균개수
+.33.3                                         NetStream.Seek.FailAverage                    Integer    실패응답 평균개수 (평균)
+.33.4                                         NetStream.Seek.FailCount                      Integer    실패응답 평균개수
+.33.5                                         NetStream.Seek.TimeRes                        Integer    응답 평균 소요시간(0.01ms)
+.34                                           NetStream.Pause                               Integer    NetStream.Pause 응답통계
+.34.1                                         NetStream.Pause.SuccessAverage                Integer    성공응답 개수 (평균)
+.34.2                                         NetStream.Pause.SuccessCount                  Integer    성공응답 개수
+.34.3                                         NetStream.Pause.FailAverage                   Integer    실패응답 개수 (평균)
+.34.4                                         NetStream.Pause.FailCount                     Integer    실패응답 개수
+.34.5                                         NetStream.Pause.TimeRes                       Integer    응답 평균 소요시간(0.01ms)
+============================================= ============================================= ========== =============================================================
                            
-                           
+
                            
 .. _snmp-cache-host-traffic-client:
 
