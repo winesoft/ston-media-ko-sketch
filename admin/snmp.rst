@@ -9,20 +9,20 @@ LIVE 채널 통계에 대해서 추가된다.
 변수사용 컨셉이 다음과 같이 대폭 수정되었다. ::
 
    // Old
-   cache.vhost.contents.memory.[vhostIndex]
+   service.vhost.contents.memory.[vhostIndex]
 
    // New
-   cache.vhost.[vhostIndex] .contents.memory
+   service.vhost.[vhostIndex] .contents.memory
 
 특히 다음과 같이 동시에 여러 변수를 사용하던 구조를 삭제하고 한 표현당 변수는 하나만 사용되도록 한다. ::
 
    // Old
-   cache.vhost.traffic.client.rtmp.inbound.[vhostMin].[vhostIndex]
+   service.vhost.traffic.client.rtmp.inbound.[vhostMin].[vhostIndex]
 
    // New
-   cache.vhost.[vhostIndex].traffic.client.rtmp.inbound.0    // 실시간
-   cache.vhost.[vhostIndex].traffic.client.rtmp.inbound.1    // 1분 평균
-   cache.vhost.[vhostIndex].traffic.client.rtmp.inbound.5    // 5분 평균
+   service.vhost.[vhostIndex].traffic.client.rtmp.inbound.0    // 실시간
+   service.vhost.[vhostIndex].traffic.client.rtmp.inbound.1    // 1분 평균
+   service.vhost.[vhostIndex].traffic.client.rtmp.inbound.5    // 5분 평균
 
 기존에 제공하던 시간 평균은 실시간(.0), 1분(.1), 5분(.5) 만을 제공하며 각 항목에 별도로 명시한다.
 
@@ -425,16 +425,16 @@ OID   Name                                        Type       Description
 
 
 
-.. _snmp-cache:
+.. _snmp-service:
 
-cache
+service
 ====================================
 
 ::
    
     OID = 1.3.6.1.4.1.40001.2.4
 
-캐시 서비스의 통계는 가상호스트별로 상세하게 수집/제공된다.
+서비스 통계를 가상호스트별로 상세하게 수집/제공된다.
 
 ====== ================== ========= ============================================================
 OID    Name               Type      Description
@@ -442,14 +442,14 @@ OID    Name               Type      Description
 .1     host               OID       호스트 (확장)
 .2     vhostCount         Integer   가상호스트 + 채널 개수
 .3     vhost              OID       가상호스트 통계 (확장)
-.4     vhostOnlyCount     Integer   가상호스트 개수
+.4     vhostOnlyCount     Integer   설정상의 가상호스트 개수
 ====== ================== ========= ============================================================
 
 
 
-.. _snmp-cache-host:
+.. _snmp-service-host:
 
-cache.host
+service.host
 ---------------------
 
 ::
@@ -470,9 +470,9 @@ OID   Name      Type        Description
 
 
 
-.. _snmp-cache-host-contents:
+.. _snmp-service-host-contents:
 
-cache.host.contents
+service.host.contents
 ---------------------
 
 ::
@@ -517,9 +517,9 @@ OID    Name             Type       Description
 
 
 
-.. _snmp-cache-host-traffic:
+.. _snmp-service-host-traffic:
 
-cache.host.traffic
+service.host.traffic
 ---------------------
 
 ::
@@ -541,9 +541,9 @@ OID                   Name            Type    Description
 
 
 
-.. _snmp-cache-host-traffic-origin:
+.. _snmp-service-host-traffic-origin:
 
-cache.host.traffic.origin
+service.host.traffic.origin
 ---------------------
 
 ::
@@ -568,9 +568,9 @@ OID                        Name                                Type       Descri
 
 
 
-.. _snmp-cache-host-traffic-origin-http:
+.. _snmp-service-host-traffic-origin-http:
 
-cache.host.traffic.origin.http
+service.host.traffic.origin.http
 ---------------------
 
 ::
@@ -636,9 +636,9 @@ OID                        Name                                Type       Descri
                            
                            
                            
-.. _snmp-cache-host-traffic-origin-hls:
+.. _snmp-service-host-traffic-origin-hls:
 
-cache.host.traffic.origin.hls
+service.host.traffic.origin.hls
 ---------------------
 
 ::
@@ -704,9 +704,9 @@ OID                        Name                                Type       Descri
 
 
 
-.. _snmp-cache-host-traffic-origin-mpegdash:
+.. _snmp-service-host-traffic-origin-mpegdash:
 
-cache.host.traffic.origin.mpegdash
+service.host.traffic.origin.mpegdash
 ---------------------
 
 ::
@@ -773,9 +773,9 @@ OID                        Name                                Type       Descri
 
 
 
-.. _snmp-cache-host-traffic-origin-rtmp:
+.. _snmp-service-host-traffic-origin-rtmp:
 
-cache.host.traffic.origin.rtmp
+service.host.traffic.origin.rtmp
 ---------------------
 
 ::
@@ -848,9 +848,9 @@ OID                                           Name                              
                            
 
                            
-.. _snmp-cache-host-traffic-client:
+.. _snmp-service-host-traffic-client:
 
-cache.host.traffic.client
+service.host.traffic.client
 ---------------------
 
 ::
@@ -899,9 +899,9 @@ OID                        Name                                       Type      
 
 
 
-.. _snmp-cache-host-traffic-client-http:                                                                                                           
+.. _snmp-service-host-traffic-client-http:                                                                                                           
                                                                                                                                               
-cache.host.traffic.client.http                                                                                                                 
+service.host.traffic.client.http                                                                                                                 
 ---------------------                                                                                                                         
                                                                                                                                               
 ::                                                                                                                                            
@@ -983,9 +983,9 @@ OID                        Name                                       Type      
 
 
 
-.. _snmp-cache-host-traffic-client-hls:                                                                                                           
+.. _snmp-service-host-traffic-client-hls:                                                                                                           
                                                                                                                                               
-cache.host.traffic.client.hls                                                                                                     
+service.host.traffic.client.hls                                                                                                     
 ---------------------                                                                                                                         
                                                                                                                                               
 ::                                                                                                                                            
@@ -1068,9 +1068,9 @@ OID                        Name                                       Type      
 
 
 
-.. _snmp-cache-host-traffic-client-mpegdash:                                                                                                           
+.. _snmp-service-host-traffic-client-mpegdash:                                                                                                           
                                                                                                                                               
-cache.host.traffic.client.mpegdash                                                                                                     
+service.host.traffic.client.mpegdash                                                                                                     
 ---------------------                                                                                                                         
                                                                                                                                               
 ::                                                                                                                                            
@@ -1153,9 +1153,9 @@ OID                        Name                                       Type      
 
 
 
-.. _snmp-cache-host-traffic-client-rtmp:
+.. _snmp-service-host-traffic-client-rtmp:
                                                                                                                                               
-cache.host.traffic.client.rtmp
+service.host.traffic.client.rtmp
 ---------------------                                                                                                                         
                                                                                                                                               
 ::                                                                                                                                            
@@ -1249,9 +1249,9 @@ OID                        Name                                          Type   
 
 
 
-.. _snmp-cache-vhost:
+.. _snmp-service-vhost:
 
-cache.vhost
+service.vhost
 ====================================
 
 ::
@@ -1273,9 +1273,9 @@ OID                     Name      Type       Description
 
 
 
-.. _snmp-cache-vhost-contents:
+.. _snmp-service-vhost-contents:
 
-cache.vhost.contents
+service.vhost.contents
 ---------------------
 
 ::
@@ -1320,9 +1320,9 @@ OID                       Name                Type       Description
 
 
 
-.. _snmp-cache-vhost-traffic:
+.. _snmp-service-vhost-traffic:
 
-cache.vhost.traffic
+service.vhost.traffic
 ---------------------
 
 ::
@@ -1344,9 +1344,9 @@ OID                                       Name              Type        Descript
 
 
 
-.. _snmp-cache-vhost-traffic-origin:
+.. _snmp-service-vhost-traffic-origin:
 
-cache.vhost.traffic.origin
+service.vhost.traffic.origin
 ---------------------
 
 ::
@@ -1363,16 +1363,16 @@ OID                                           Name                              
 .2                                            outbound                              Integer    원본서버로 보내는 평균 트래픽(Bytes)
 .3                                            allSessionAverage                     Integer    전체 원본서버 평균 세션수
 .4                                            activeSessionAverage                  Integer    전체 원본서버 세션수 중 전송 중인 평균 세션수
-.10                                           http                                  OID        HTTP 트래픽 (cache.vhost.traffic.origin.http)
-.11                                           hls                                   OID        HLS 트래픽 (cache.vhost.traffic.origin.hls)
-.12                                           mpegdash                              OID        MPEG-DASH 트래픽 (cache.vhost.traffic.origin.mpegdash)
-.20                                           rtmp                                  OID        RTMP 트래픽 (cache.vhost.traffic.origin.rtmp)
+.10                                           http                                  OID        HTTP 트래픽 (service.vhost.traffic.origin.http)
+.11                                           hls                                   OID        HLS 트래픽 (service.vhost.traffic.origin.hls)
+.12                                           mpegdash                              OID        MPEG-DASH 트래픽 (service.vhost.traffic.origin.mpegdash)
+.20                                           rtmp                                  OID        RTMP 트래픽 (service.vhost.traffic.origin.rtmp)
 ============================================= ===================================== ========== =================================================================
 
 
-.. _snmp-cache-vhost-traffic-origin-http:
+.. _snmp-service-vhost-traffic-origin-http:
 
-cache.vhost.traffic.origin.http
+service.vhost.traffic.origin.http
 ---------------------
 
 ::
@@ -1439,9 +1439,9 @@ OID                                           Name                              
 
 
 
-.. _snmp-cache-vhost-traffic-origin-hls:
+.. _snmp-service-vhost-traffic-origin-hls:
 
-cache.vhost.traffic.origin.hls
+service.vhost.traffic.origin.hls
 ---------------------
 
 ::
@@ -1508,9 +1508,9 @@ OID                                           Name                              
 
 
 
-.. _snmp-cache-vhost-traffic-origin-mpegdash:
+.. _snmp-service-vhost-traffic-origin-mpegdash:
 
-cache.vhost.traffic.origin.mpegdash
+service.vhost.traffic.origin.mpegdash
 ---------------------
 
 ::
@@ -1578,9 +1578,9 @@ OID                                           Name                              
 
 
 
-.. _snmp-cache-vhost-traffic-origin-rtmp:
+.. _snmp-service-vhost-traffic-origin-rtmp:
 
-cache.vhost.traffic.origin.rtmp
+service.vhost.traffic.origin.rtmp
 ---------------------
 
 ::
@@ -1592,9 +1592,9 @@ cache.vhost.traffic.origin.rtmp
                            
 
 
-.. _snmp-cache-vhost-traffic-client:
+.. _snmp-service-vhost-traffic-client:
 
-cache.vhost.traffic.client
+service.vhost.traffic.client
 ---------------------
 
 ::
@@ -1634,17 +1634,17 @@ OID                                           Name                              
 .6.9                                          requestHitCount.TCP_DENIED                 Integer    TCP_DENIED
 .6.10                                         requestHitCount.TCP_ERROR                  Integer    TCP_ERROR
 .6.11                                         requestHitCount.TCP_REDIRECT_HIT           Integer    TCP_REDIRECT_HIT
-.10                                           http                                       OID        HTTP 트래픽 (cache.vhost.traffic.client.http)
-.11                                           hls                                        OID        HLS 트래픽 (cache.vhost.traffic.client.hls)
-.12                                           mpegdash                                   OID        MPEG-DASH 트래픽 (cache.vhost.traffic.client.mpegdash)
-.20                                           rtmp                                       OID        RTMP 트래픽 (cache.vhost.traffic.client.rtmp)
+.10                                           http                                       OID        HTTP 트래픽 (service.vhost.traffic.client.http)
+.11                                           hls                                        OID        HLS 트래픽 (service.vhost.traffic.client.hls)
+.12                                           mpegdash                                   OID        MPEG-DASH 트래픽 (service.vhost.traffic.client.mpegdash)
+.20                                           rtmp                                       OID        RTMP 트래픽 (service.vhost.traffic.client.rtmp)
 ============================================= ========================================== ========== ==============================================================
 
 
 
-.. _snmp-cache-vhost-traffic-client-http:
+.. _snmp-service-vhost-traffic-client-http:
 
-cache.vhost.traffic.client.http
+service.vhost.traffic.client.http
 ---------------------
 
 ::
@@ -1727,9 +1727,9 @@ OID                                           Name                              
 
 
 
-.. _snmp-cache-vhost-traffic-client-hls:
+.. _snmp-service-vhost-traffic-client-hls:
 
-cache.vhost.traffic.client.hls
+service.vhost.traffic.client.hls
 ---------------------
 
 ::
@@ -1812,9 +1812,9 @@ OID                                           Name                              
 
 
 
-.. _snmp-cache-vhost-traffic-client-mpegdash:
+.. _snmp-service-vhost-traffic-client-mpegdash:
 
-cache.vhost.traffic.client.mpegdash
+service.vhost.traffic.client.mpegdash
 ---------------------
 
 ::
@@ -1897,9 +1897,9 @@ OID                                           Name                              
 
 
 
-.. _snmp-cache-vhost-traffic-client-rtmp:
+.. _snmp-service-vhost-traffic-client-rtmp:
                                                                                                                                               
-cache.vhost.traffic.client.rtmp
+service.vhost.traffic.client.rtmp
 ---------------------                                                                                                                         
                                                                                                                                               
 ::                                                                                                                                            
