@@ -26,6 +26,10 @@ LIVE 채널 통계에 대해서 추가된다.
 
 기존에 제공하던 시간 평균은 실시간(.0), 1분(.1), 5분(.5) 만을 제공하며 각 항목에 별도로 명시한다.
 
+.. figure:: img/sms_snmp_hierachy.png
+   :align: center
+
+
 
 .. toctree::
    :maxdepth: 2
