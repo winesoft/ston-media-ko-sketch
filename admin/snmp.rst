@@ -192,14 +192,11 @@ www.example.com/bar        30,000
          <Disk>/cache3</Disk>
       </Storage>
       
-   위와 같이 3개의 디스크가 설정된 환경에서 /cache1의 ``[diskIndex]`` 는 1, /cache3의 ``[diskIndex]`` 는 3을 가진다. 
-   예를 들어 /cache1의 전체용량에 해당하는 OID는 system.diskInfo.1.diskInfoTotalSize (1.3.6.1.4.1.40001.2.2.18.1.3) 이 된다. 
-   .1.diskInfoTotalSize 는 첫번째 디스크의 전체용량을 의미한다.
+
+위와 같이 3개의 디스크가 설정된 환경에서 /cache1의 ``[diskIndex]`` 는 1, /cache3의 ``[diskIndex]`` 는 3을 가진다. 
+예를 들어 /cache1의 전체용량에 해당하는 OID는 system.diskInfo.1.diskInfoTotalSize (1.3.6.1.4.1.40001.2.2.18.1.3) 이 된다. 
+.1.diskInfoTotalSize 는 첫번째 디스크의 전체용량을 의미한다.
    
-
-.. warning::
-
-   기존에 존재하던 모든 변수 표현은 삭제된다.
 
 
 
