@@ -14,7 +14,7 @@ LIVE 채널 통계에 대해서 추가된다.
    // New
    service.vhost.[vhostIndex] .contents.memory
 
-특히 다음과 같이 동시에 여러 변수를 사용하던 구조를 삭제하고 한 표현당 변수는 하나만 사용되도록 한다. ::
+특히 다음과 같이 동시에 여러 변수를 사용하던 구조를 삭제하고 한 항목당 하나의 변수만 사용되도록 한다. ::
 
    // Old
    service.vhost.traffic.client.rtmp.inbound.[vhostMin].[vhostIndex]
