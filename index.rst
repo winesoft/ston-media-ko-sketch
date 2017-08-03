@@ -18,6 +18,7 @@ Draft
    admin/monitoring_stats
    admin/rrd
    admin/snmp
+   admin/wm
 
 
 Idea
