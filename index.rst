@@ -19,6 +19,7 @@ Draft
    admin/rrd
    admin/snmp
    admin/wm
+   admin/dashboard
 
 
 Idea

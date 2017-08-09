@@ -33,11 +33,3 @@ WM
 .. figure:: img/new_vhost_wizard4.png
    :align: center
 
-
-
-.. _snmp-community:
-
-실시간 모니터링
-====================================
-
-실시간 모니터링을 WM에 추가하며 라이브 모니터링 및 시청이 가능하도록 개선한다.
