@@ -21,6 +21,19 @@ WM
 가상호스트를 생성할 때 서비스 형태(VOD or LIVE)와 상세 설정에 혼동이 없도록 UI를 제공한다.
 
 
+.. figure:: img/new_vhost_wizard1.png
+   :align: center
+
+.. figure:: img/new_vhost_wizard2.png
+   :align: center
+
+.. figure:: img/new_vhost_wizard3.png
+   :align: center
+
+.. figure:: img/new_vhost_wizard4.png
+   :align: center
+
+
 
 .. _snmp-community:
 
